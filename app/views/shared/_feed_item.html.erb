@@ -3,7 +3,15 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
-    <span class="content"><%= wrap(feed_item.content) %></span>
+    <span class="content">
+      <%= wrap(feed_item.content) %>
+      <%= form_for(@micropost) do |f| %>       
+        <%= f.hidden_field :content, :value => feed_item.content %>
+        <%= f.text_field :content1, placeholder: feed_item.content1 %>
+        <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+      <% end %>
+      <%= feed_item.content2 %>
+    </span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
