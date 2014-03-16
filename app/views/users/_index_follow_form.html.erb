@@ -1,0 +1,5 @@
+<% if current_user.following?(user) %>
+    	<%= render 'index_unfollow' %>
+  	<% else %>
+    	<%= render 'index_follow' %>
+  	<% end %>

@@ -5,4 +5,19 @@
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+	<% if current_user.following?(user) %>
+    	<%= form_for(@current_user.relationships.find_by(followed_id: @users),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <%= f.submit "Unfollow", class: "btn btn-large" %>
+<% end %>
+  	<% else %>
+    	<%= form_for(current_user.relationships.build(followed_id: @users),
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :followed_id %></div>
+  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>
+  	<% end %>
+
+
 </li>

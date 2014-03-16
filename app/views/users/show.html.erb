@@ -5,6 +5,7 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
+        (<%= pluralize(@user.reputation_for(:votes).to_i, "vote") %>)
       </h1>
     </section>
     <section>

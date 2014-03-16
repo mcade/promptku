@@ -9,6 +9,7 @@ class MicropostsController < ApplicationController
       redirect_to root_url
     else
       @feed_items = []
+      @microposts = []
       render 'static_pages/home'
     end
   end
@@ -16,6 +17,13 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     redirect_to root_url
+  end
+
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @micropost = Micropost.find_by(id: params[:id])
+    @micropost.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting"
   end
 
   private
