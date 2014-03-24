@@ -26,6 +26,17 @@ class MicropostsController < ApplicationController
     redirect_to :back, notice: "Thank you for voting"
   end
 
+  def retweet
+      micropost = Micropost.find_by(id: params[:id])
+      retweet = micropost.retweet_by(current_user)
+      if micropost.user == current_user
+        redirect_to current_user, :notice => "Sorry, you can't retweet your own tweets"
+      else
+        redirect_to current_user, :notice => "Succesfully retweeted"
+      end
+
+  end
+
   private
 
     def micropost_params
