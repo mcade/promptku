@@ -5,9 +5,11 @@ Promptku::Application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy] do
-    member { post :vote }
-    member { post :retweet}
+  resources :microposts, only: [:create, :destroy, :index] do
+    member do
+      post :vote
+      post :retweet
+    end
   end
   resources :relationships, only: [:create, :destroy]
 

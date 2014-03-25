@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 	before_create :create_remember_token
 
   has_many :retweets, :through => :microposts
+  has_many :replies, foreign_key: "to_id", class_name: "Micropost"
   
 	validates :name,  presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -17,6 +18,7 @@ class User < ActiveRecord::Base
   						uniqueness: { case_sensitive: false }
   	has_secure_password
   validates :password, length: { minimum: 6 }
+  has_many :evaluations, class_name: "RSEvaluation", as: :source
   has_reputation :votes, source: {reputation: :votes, of: :microposts}, aggregated_by: :sum
 
 
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
   	end
 
     def feed
-      Micropost.from_users_followed_by(self)
+      Micropost.from_users_followed_by_including_replies(self)
     end
 
     def following?(other_user)
@@ -43,6 +45,21 @@ class User < ActiveRecord::Base
 
     def unfollow!(other_user)
       relationships.find_by(followed_id: other_user.id).destroy
+    end
+
+    def shorthand
+     # name.gsub(/\s*/,"")
+     name.gsub(/ /,"_")
+    end
+    def self.shorthand_to_name(sh)
+     # name.gsub(/\s*/,"")
+     sh.gsub(/_/," ")
+    end
+    def self.find_by_shorthand(shorthand_name)
+      all = where(name: User.shorthand_to_name(shorthand_name))
+      all
+      return nil if all.empty?
+      all.first
     end
 
   	private

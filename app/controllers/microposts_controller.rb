@@ -2,6 +2,13 @@ class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+
+
+  def index
+    @microposts = Micropost.page(params[:page]).per_page(30).popular
+    @micropost  = current_user.microposts.build
+  end
+
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
@@ -40,7 +47,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :content1, :content2)
+      params.require(:micropost).permit(:content, :content1, :content2, :to)
     end
 
     def correct_user
