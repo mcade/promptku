@@ -1,4 +1,14 @@
 class User < ActiveRecord::Base
+
+# Using the pg_search gem to use Postgresql's full-text-search capabilities
+# See https://github.com/Casecommons/pg_search
+   include PgSearch
+   pg_search_scope :search_name_and_username, 
+     against: [:name, :email],
+     using: {
+       tsearch: { prefix: true, any_word: true } 
+     }
+
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -61,6 +71,14 @@ class User < ActiveRecord::Base
       return nil if all.empty?
       all.first
     end
+
+    def self.search(query)
+      if query.present?
+        search_name_and_username(query)
+      else
+        where(nil)
+      end
+   end
 
   	private
 

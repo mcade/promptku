@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
     def index
-      @users = User.paginate(page: params[:page])
+      # @users = User.paginate(page: params[:page])
+      # Using pg_search for full text search and kaminari gem to paginate
+      @users = User.search(params[:query]).page params[:page]
     end
 
 	  def new
@@ -14,12 +16,12 @@ class UsersController < ApplicationController
 
   	def show
     	@user = User.find(params[:id])
-      @microposts = @user.microposts.paginate(page: params[:page])
+      @microposts = @user.microposts.page params[:page]
       @micropost  = current_user.microposts.build
   	end
 
   	def create
-  		@user = User.new(user_params)    # Not the final implementation!
+  		@user = User.new(user_params)
     	if @user.save
         sign_in @user
     		flash[:success] = "Welcome to Promptku!"
@@ -50,14 +52,14 @@ class UsersController < ApplicationController
     def following
       @title = "Following"
       @user = User.find(params[:id])
-      @users = @user.followed_users.paginate(page: params[:page])
+      @users = @user.followed_users.page params[:page]
       render 'show_follow'
     end
 
     def followers
       @title = "Followers"
       @user = User.find(params[:id])
-      @users = @user.followers.paginate(page: params[:page])
+      @users = @user.followers.page params[:page]
       render 'show_follow'
     end
 

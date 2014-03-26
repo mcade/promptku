@@ -12,8 +12,8 @@ class Micropost < ActiveRecord::Base
 	validates :user_id, presence: true
 
   def self.popular
-    #find_with_reputation(:votes, :all, {:order => 'votes desc'})
-    find_with_reputation(:votes, :all, order: 'votes desc')
+    reorder('votes desc').find_with_reputation(:votes, :all)
+    #find_with_reputation(:votes, :all, order: 'votes desc')
   end
 
 

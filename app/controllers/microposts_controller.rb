@@ -5,7 +5,7 @@ class MicropostsController < ApplicationController
 
 
   def index
-    @microposts = Micropost.page(params[:page]).per_page(30).popular
+    @microposts = Kaminari.paginate_array(Micropost.popular).page(params[:page]).per(25)
     @micropost  = current_user.microposts.build
   end
 

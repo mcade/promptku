@@ -7,13 +7,19 @@ gem 'pg', '0.15.1'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
-gem 'will_paginate', '3.0.4'
-gem 'bootstrap-will_paginate', '0.0.9'
+# gem 'will_paginate', '3.0.4'
+# gem 'bootstrap-will_paginate', '0.0.9'
 gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4', require: 'reputation_system'
+
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+# Use ActiveRecord to manage full-text-searches in Postgresql
+gem 'pg_search'
 
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
 	gem 'sqlite3', '1.3.8'
+	gem 'quiet_assets'
 end
 
 group :test do

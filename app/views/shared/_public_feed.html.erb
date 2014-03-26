@@ -4,4 +4,4 @@
     <%= render partial: 'shared/feed_item', collection: @microposts %>
   </ol>
 <% end %>
-<%= will_paginate %>
+<%= paginate @microposts, :theme => 'twitter-bootstrap', :pagination_class => "pagination-sm" %>
