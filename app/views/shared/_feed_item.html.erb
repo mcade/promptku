@@ -18,6 +18,7 @@
     </span>
     <span>
       <%= link_to "Retweet", retweet_micropost_path(feed_item), :method => :post %>
+      <%= link_to "Comments", feed_item %>
     </span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.

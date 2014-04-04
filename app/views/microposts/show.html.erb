@@ -1,0 +1,37 @@
+<div id="<%= @micropost.id %>">
+  <%= link_to gravatar_for(@micropost.user), @micropost.user %>
+    <span class="user">
+      <%= link_to @micropost.user.name, @micropost.user %>
+    </span>
+<span class="content">
+    <%= @micropost.content %><br>
+    <%= @micropost.content1 %><br>
+    <span>
+    <%= pluralize @micropost.reputation_for(:votes).to_i, "vote" %>
+    <% unless @micropost.user.id == current_user.id %>
+      <%= link_to "up", vote_micropost_path(@micropost, type: "up"), method: "post" %>
+      <%= link_to "down", vote_micropost_path(@micropost, type: "down"), method: "post" %>
+    <% end %>
+    </span>
+    <span>
+      <%= link_to "Retweet", retweet_micropost_path(@micropost), :method => :post %>
+    </span>
+
+
+
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
+  </span>
+  <% if current_user?(@micropost.user) %>
+    <%= link_to "delete", @micropost, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: @micropost.content %>
+  <% end %>
+</div>
+<%= render 'shared/comment_form', micropost: @micropost %>
+<span class="comments">
+  <ul class="comments">
+    <%= render @micropost.comments %>
+  </ul>
+</span>

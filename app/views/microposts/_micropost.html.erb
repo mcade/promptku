@@ -1,6 +1,6 @@
 <li>
   <span class="content">
-    <%= wrap(micropost.content) %>
+    <%= micropost.content %>
     <span>
       <%= form_for(@micropost) do |f| %>       
       <%= f.hidden_field :content, :value => micropost.content %>
@@ -18,6 +18,7 @@
     </span>
     <span>
       <%= link_to "Retweet", retweet_micropost_path(micropost), :method => :post %>
+      <%= link_to "Comments", micropost %>
     </span>
 
 

@@ -5,7 +5,8 @@ Promptku::Application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy, :index] do
+  resources :microposts, only: [:create, :destroy, :index, :show] do
+    resources :comments
     member do
       post :vote
       post :retweet
