@@ -1,4 +1,12 @@
 class Micropost < ActiveRecord::Base
+
+  include PgSearch
+   pg_search_scope :search_content, 
+     against: [:content, :content1],
+     using: {
+       tsearch: { prefix: true, any_word: true } 
+     }
+
   @@reply_to_regexp = /\A@([^\s]*)/
 	belongs_to :user
   belongs_to :to, class_name: "User"
@@ -13,8 +21,17 @@ class Micropost < ActiveRecord::Base
 	validates :user_id, presence: true
 
   def self.popular
-    reorder('votes desc').find_with_reputation(:votes, :all)
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all)
     #find_with_reputation(:votes, :all, order: 'votes desc')
+  end
+  def self.popularToday
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["DATE(microposts.created_at) = DATE(NOW())"]})
+  end
+  def self.popularWeekly
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["EXTRACT(WEEK FROM microposts.created_at) = EXTRACT(WEEK FROM now())"]})
+  end
+  def self.popularMonthly
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["EXTRACT(MONTH FROM microposts.created_at) = EXTRACT(MONTH FROM now())"]})
   end
 
 
@@ -61,5 +78,13 @@ class Micropost < ActiveRecord::Base
         self.to=user if user
       end
     end
+
+    def self.search(query)
+      if query.present?
+        search_content(query)
+      else
+        where(nil)
+      end
+   end
 
 end

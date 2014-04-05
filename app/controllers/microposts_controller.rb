@@ -5,8 +5,19 @@ class MicropostsController < ApplicationController
 
 
   def index
-    @microposts = Kaminari.paginate_array(Micropost.popular).page(params[:page]).per(25)
+    
     @micropost  = current_user.microposts.build
+    #@microposts = Micropost.search(params[:query]).page params[:page]
+    @microposts = case params["show"]
+      when "daily"
+          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(25)
+      when "weekly"
+          Kaminari.paginate_array(Micropost.popularWeekly).page(params[:page]).per(25)
+      when "monthly"
+          Kaminari.paginate_array(Micropost.popularMonthly).page(params[:page]).per(25)
+      else
+          Kaminari.paginate_array(Micropost.popular).page(params[:page]).per(25)
+    end
   end
 
   def show

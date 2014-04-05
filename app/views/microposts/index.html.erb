@@ -1,3 +1,22 @@
+<% provide(:title, 'Trending Microposts') %>
+<h1>Trending Microposts</h1>
+<form action="" method="get">
+  <fieldset>
+     <button type="submit" name="show" value="daily">Today</button>
+     <button type="submit" name="show" value="weekly">This week</button>
+     <button type="submit" name="show" value="monthly">This month</button>
+  </fieldset>
+</form>
+<div class="col-md-6 col-md-offset-3">
+
+	<%= form_tag microposts_path, method: :get do %>
+		<%= text_field_tag :query, params[:query], placeholder: 'Search for a micropost' %>
+		<%= submit_tag "Search", name: nil, class: "btn btn-lrg btn-primary" %>
+		<% if params[:query].present? %>
+			<% @microposts = Micropost.search(params[:query]).page params[:page] %>
+		<% end %>
+	<% end %>
 
 <%= render 'shared/public_feed' %>
 
+</div>
