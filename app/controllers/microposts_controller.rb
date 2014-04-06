@@ -16,7 +16,11 @@ class MicropostsController < ApplicationController
       when "monthly"
           Kaminari.paginate_array(Micropost.popularMonthly).page(params[:page]).per(25)
       else
+        if params[:tag].present?
+          Kaminari.paginate_array(Micropost.tagged_with(params[:tag])).page(params[:page]).per(25)
+        else
           Kaminari.paginate_array(Micropost.popular).page(params[:page]).per(25)
+        end
     end
   end
 
@@ -63,7 +67,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :content1, :content2, :to)
+      params.require(:micropost).permit(:content, :content1, :content2, :to, :tag_list)
     end
 
     def correct_user

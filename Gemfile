@@ -16,6 +16,8 @@ gem 'bootstrap-kaminari-views'
 # Use ActiveRecord to manage full-text-searches in Postgresql
 gem 'pg_search'
 
+gem 'acts-as-taggable-on'
+
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
 	gem 'sqlite3', '1.3.8'

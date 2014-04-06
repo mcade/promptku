@@ -14,6 +14,8 @@ Promptku::Application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
 
+  get 'tags/:tag', to: 'microposts#index', as: :tag
+
   root  'static_pages#home'
 
   # match '/retweet/:id' => 'microposts#retweet', :as => 'retweet'

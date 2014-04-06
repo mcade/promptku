@@ -3,5 +3,9 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Create new prompt..." %>
   </div>
+  <div class="field">
+  	<%= f.label :tags, "Tags (separated by commas)" %><br />
+  	<%= f.text_field :tag_list %>
+  </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

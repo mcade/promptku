@@ -7,9 +7,11 @@
       <%= wrap(feed_item.content) %>
       <%= form_for(@micropost) do |f| %>       
         <%= f.hidden_field :content, :value => feed_item.content %>
+        <%= f.hidden_field :tag_list, :value => feed_item.tag_list%>
         <%= f.text_field :content1, placeholder: feed_item.content1 %>
         <%= f.submit "Post", class: "btn btn-large btn-primary" %>
       <% end %>
+      <p>Tags: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
       <%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %>
       <% unless feed_item.user.id == current_user.id %>
         <%= link_to "up", vote_micropost_path(feed_item, type: "up"), method: "post" %>

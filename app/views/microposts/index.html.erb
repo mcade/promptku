@@ -7,6 +7,18 @@
      <button type="submit" name="show" value="monthly">This month</button>
   </fieldset>
 </form>
+<div id="tag_cloud">
+	<% if params["show"] == "weekly" %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.week.ago ) %>
+	<% elsif params["show"] == "monthly" %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.month.ago ) %>
+	<% else %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.day.ago ) %>
+	<% end %>
+	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
+		<%= link_to tag.name, tag_path(tag.name), class: css_class%>
+	<% end %>
+</div>
 <div class="col-md-6 col-md-offset-3">
 
 	<%= form_tag microposts_path, method: :get do %>

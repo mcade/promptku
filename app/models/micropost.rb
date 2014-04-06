@@ -2,7 +2,7 @@ class Micropost < ActiveRecord::Base
 
   include PgSearch
    pg_search_scope :search_content, 
-     against: [:content, :content1],
+     against: [:content, :content1], :associated_against => { :tags => [:name] },
      using: {
        tsearch: { prefix: true, any_word: true } 
      }
@@ -20,6 +20,9 @@ class Micropost < ActiveRecord::Base
 	validates :content, presence: true, length: { maximum: 140 }
 	validates :user_id, presence: true
 
+  acts_as_taggable
+  acts_as_taggable_on :tags
+
   def self.popular
     reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all)
     #find_with_reputation(:votes, :all, order: 'votes desc')
@@ -36,6 +39,7 @@ class Micropost < ActiveRecord::Base
 
 
 
+
   # validates :retweeter, :uniqueness => {scope: :user_id, :message => "You already retweeted"}
   # validates :retweet, :uniqueness => {scope: :current_user, :message => "You already retweeted"}
   def retweet_by(retweeter)
@@ -47,6 +51,7 @@ class Micropost < ActiveRecord::Base
       t = Micropost.new
       t.content = "RT #{self.user.name}: #{self.content}"
       t.content1 = "#{self.content1}"
+      t.tag_list = self.tag_list
       t.user = retweeter
       t.save
       "Succesfully retweeted"
