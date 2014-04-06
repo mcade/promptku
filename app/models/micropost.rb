@@ -19,9 +19,14 @@ class Micropost < ActiveRecord::Base
 
 	validates :content, presence: true, length: { maximum: 140 }
 	validates :user_id, presence: true
+  validates_size_of     :tag_list,
+                        :maximum => 4,
+                        :message => 'can only have 4 tags max'
+
 
   acts_as_taggable
   acts_as_taggable_on :tags
+  ActsAsTaggableOn.delimiter = ' '
 
   def self.popular
     reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all)

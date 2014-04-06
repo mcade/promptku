@@ -8,7 +8,7 @@
         <%= f.text_field :content1, placeholder: micropost.content1 %>
         <%= f.submit "Post", class: "btn btn-large btn-primary" %>
       <% end %>
-    <p>Tags: <%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+    <p>Tags: <%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
     <%= pluralize micropost.reputation_for(:votes).to_i, "vote" %>
     <% unless micropost.user.id == current_user.id %>
       <%= link_to "up", vote_micropost_path(micropost, type: "up"), method: "post" %>
