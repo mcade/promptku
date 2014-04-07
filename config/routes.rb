@@ -10,6 +10,7 @@ Promptku::Application.routes.draw do
     member do
       post :vote
       post :retweet
+      get :likes
     end
   end
   resources :relationships, only: [:create, :destroy]

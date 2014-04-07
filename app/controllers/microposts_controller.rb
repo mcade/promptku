@@ -29,6 +29,11 @@ class MicropostsController < ApplicationController
     @comment = Comment.new
   end
 
+  def likes
+    @micropost  = current_user.microposts.build
+    @microposts = Kaminari.paginate_array(Micropost.evaluated_by(:votes, User.find(params[:id])).reorder('rs_evaluations.created_at DESC')).page(params[:page]).per(25)
+  end
+
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save

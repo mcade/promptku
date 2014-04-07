@@ -26,7 +26,6 @@ class Micropost < ActiveRecord::Base
 
   acts_as_taggable
   acts_as_taggable_on :tags
-  ActsAsTaggableOn.delimiter = ' '
 
   def self.popular
     reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all)
@@ -41,6 +40,7 @@ class Micropost < ActiveRecord::Base
   def self.popularMonthly
     reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["EXTRACT(MONTH FROM microposts.created_at) = EXTRACT(MONTH FROM now())"]})
   end
+
 
 
 
