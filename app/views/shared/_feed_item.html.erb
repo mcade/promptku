@@ -4,11 +4,11 @@
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
     <span class="content">
-      <%= wrap(feed_item.content) %>
+      <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content) %>
       <%= form_for(@micropost) do |f| %>       
         <%= f.hidden_field :content, :value => feed_item.content %>
         <%= f.hidden_field :tag_list, :value => feed_item.tag_list%>
-        <%= f.text_field :content1, placeholder: feed_item.content1 %>
+        <%= f.text_area :content1, placeholder: feed_item.content1 %>
         <%= f.submit "Post", class: "btn btn-large btn-primary" %>
       <% end %>
       <p>Tags: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>

@@ -4,8 +4,8 @@
       <%= link_to @micropost.user.name, @micropost.user %>
     </span>
 <span class="content">
-    <%= @micropost.content %><br>
-    <%= @micropost.content1 %><br>
+    <%= link_to "#{wrap(@micropost.content)}", microposts_path(show: "matching_prompts", content: @micropost.content) %><br>
+    <%= wrap(@micropost.content1) %><br>
     <span>
     <p>Tags: <%= raw @micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
     <%= pluralize @micropost.reputation_for(:votes).to_i, "vote" %>

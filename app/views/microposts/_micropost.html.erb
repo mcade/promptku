@@ -1,11 +1,12 @@
 <li>
   <span class="content">
-    <%= micropost.content %>
+    <!-- <%= micropost.content %> -->
+    <%= link_to "#{wrap(micropost.content)}", microposts_path(show: "matching_prompts", content: micropost.content) %>
     <span>
       <%= form_for(@micropost) do |f| %>       
         <%= f.hidden_field :content, :value => micropost.content %>
         <%= f.hidden_field :tag_list, :value => micropost.tag_list%>
-        <%= f.text_field :content1, placeholder: micropost.content1 %>
+        <%= f.text_area :content1, placeholder: micropost.content1 %>
         <%= f.submit "Post", class: "btn btn-large btn-primary" %>
       <% end %>
     <p>Tags: <%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
