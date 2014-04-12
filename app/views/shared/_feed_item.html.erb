@@ -5,7 +5,7 @@
     </span>
     <span class="content">
       <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content) %>
-      <%= form_for((@micropost), :method => "post", :url => microposts_path, :remote => true) do |f| %>  
+      <%= form_for((@micropost), :method => "post", :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>  
       <!-- add this to change from edit_>>>  , :html => { :id => "new_micropost", :class => "new_micropost" }-->     
         <%= f.hidden_field :content, :value => feed_item.content %>
         <%= f.hidden_field :tag_list, :value => feed_item.tag_list%>

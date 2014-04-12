@@ -3,7 +3,7 @@
     <!-- <%= micropost.content %> -->
     <%= link_to "#{wrap(micropost.content)}", microposts_path(show: "matching_prompts", content: micropost.content) %>
     <span>
-      <%= form_for((@micropost), :remote => true) do |f| %>       
+      <%= form_for((@micropost), :remote => true, :authenticity_token => true) do |f| %>       
         <%= f.hidden_field :content, :value => micropost.content %>
         <%= f.hidden_field :tag_list, :value => micropost.tag_list%>
         <%= f.text_area :content1, placeholder: micropost.content1 %>

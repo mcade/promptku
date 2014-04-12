@@ -1,5 +1,4 @@
-Comments
-<%= form_for([@micropost, @comment]) do |f| %>
+<%= form_for([@micropost, @comment], :remote => true, :authenticity_token => true) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :comment_content, :placeholder => "Write a Comment..." %>

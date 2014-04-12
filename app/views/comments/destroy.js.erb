@@ -1,0 +1,2 @@
+$("#comment<%= @comment.id %>").slideUp();
+$('#commentcount').text("<%= pluralize(@comment.micropost.comments.count, "comment") %>");

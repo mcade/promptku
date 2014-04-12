@@ -2,6 +2,7 @@
   alert('errors');
 <% else %>
     $('.microposts').prepend("<%= escape_javascript(render :partial => 'shared/feed_item', object: @micropost) %>");
+    $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
     $('.microposts').children(':first').hide().slideDown();
     $('.field #micropost_content').val("");
     $('form #micropost_content1').val("");

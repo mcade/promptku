@@ -1,0 +1,4 @@
+$('ul.comments').append("<%= escape_javascript(render :partial => 'comment', object: @comment) %>");
+$('ul.comments').children(':last').hide().slideDown();
+$('textarea#comment_comment_content').val("");
+$('#commentcount').text("<%= pluralize(@comment.micropost.comments.count, "comment") %>");

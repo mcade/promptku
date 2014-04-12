@@ -8,8 +8,8 @@
 <span>
 	(<%= pluralize(current_user.reputation_for(:votes).to_i, "vote") %>)
 </span>
-<span>
-  <%= pluralize(current_user.microposts.count, "micropost") %>
+<span id="postcount">
+  <%= pluralize(current_user.microposts.count, "promptku") %>
 </span>
 <span>
   <%= link_to "likes", likes_micropost_path(current_user) %>

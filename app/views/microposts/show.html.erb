@@ -30,6 +30,7 @@
                                      title: @micropost.content %>
   <% end %>
 </div>
+<span id="commentcount"><%= pluralize(@micropost.comments.count, "comment") %></span>
 <%= render 'shared/comment_form', micropost: @micropost %>
 <span class="comments">
   <ul class="comments">

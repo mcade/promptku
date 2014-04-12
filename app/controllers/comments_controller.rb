@@ -5,19 +5,23 @@ class CommentsController < ApplicationController
     @comment = Comment.create(comment_params)
     @comment.micropost = @micropost
     @comment.user = current_user
-    if @comment.save
-       flash[:success] = "Comment created!"
-       redirect_to :back
-    else
-      render 'shared/_comment_form'
+    respond_to do |format|
+      if @comment.save
+         format.html { redirect_to :back }
+         format.js
+      else
+        render 'shared/_comment_form'
+      end
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:success] = "Comment deleted."
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   private
