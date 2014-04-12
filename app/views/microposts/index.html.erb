@@ -29,6 +29,16 @@
 		<% end %>
 	<% end %>
 
+
 <%= render 'shared/public_feed' %>
+
+
+<% unless (params[:page].present? || @microposts.count <5) %>
+	<button class = "more">Show More</button>
+<% end %>
+
+
+<%= paginate @microposts %>
+
 
 </div>

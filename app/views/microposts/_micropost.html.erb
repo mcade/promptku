@@ -1,23 +1,26 @@
-<li>
+<li class="micropost" id="post<%= micropost.id %>">
   <span class="content">
     <!-- <%= micropost.content %> -->
     <%= link_to "#{wrap(micropost.content)}", microposts_path(show: "matching_prompts", content: micropost.content) %>
     <span>
-      <%= form_for(@micropost) do |f| %>       
+      <%= form_for((@micropost), :remote => true) do |f| %>       
         <%= f.hidden_field :content, :value => micropost.content %>
         <%= f.hidden_field :tag_list, :value => micropost.tag_list%>
         <%= f.text_area :content1, placeholder: micropost.content1 %>
         <%= f.submit "Post", class: "btn btn-large btn-primary" %>
       <% end %>
     <p>Tags: <%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
-    <%= pluralize micropost.reputation_for(:votes).to_i, "vote" %>
-    <% unless micropost.user.id == current_user.id %>
-      <%= link_to "up", vote_micropost_path(micropost, type: "up"), method: "post" %>
-      <%= link_to "down", vote_micropost_path(micropost, type: "down"), method: "post" %>
-    <% end %>
+    <div id="vote<%= micropost.id %>">
+      <%= pluralize micropost.reputation_for(:votes).to_i, "vote" %>
+      <% unless micropost.user.id == current_user.id %>
+        <%= link_to "up", vote_micropost_path(micropost, type: "up"), :method => :post, :remote => true %>
+        <%= link_to "down", vote_micropost_path(micropost, type: "down"), :method => :post, :remote => true %>
+      <% end %>
+    </div>
     </span>
-    <span>
-      <%= link_to "Retweet", retweet_micropost_path(micropost), :method => :post %>
+    <span id="retweet<%= micropost.id %>">
+      <%= link_to "Retweet", retweet_micropost_path(micropost), :method => :post, :remote => true %>
+    </span><span>
       <%= link_to "Comments", micropost %>
     </span>
 
@@ -29,6 +32,7 @@
   </span>
   <% if current_user?(micropost.user) %>
     <%= link_to "delete", micropost, method: :delete,
+                                     :remote=>true,
                                      data: { confirm: "You sure?" },
                                      title: micropost.content %>
   <% end %>

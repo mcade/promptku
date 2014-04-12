@@ -1,0 +1,5 @@
+<% if @micropost.errors.any? %>
+  alert('errors');
+<% else %>
+    $("#retweet<%= @micropost.id %>").html("Retweeted");
+<% end %>

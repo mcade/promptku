@@ -117,6 +117,10 @@ footer {
   @include box_sizing;
 }
 
+.more {
+  display: none;
+}
+
 /* sidebar */
 
 aside {

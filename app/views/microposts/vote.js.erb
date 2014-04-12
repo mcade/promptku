@@ -1,0 +1,1 @@
+$("#vote<%= @micropost.id %>").html("This post has <%= @micropost.reputation_for(:votes).to_i %> points.")

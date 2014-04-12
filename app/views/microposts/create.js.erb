@@ -1,0 +1,8 @@
+<% if @micropost.errors.any? %>
+  alert('errors');
+<% else %>
+    $('.microposts').prepend("<%= escape_javascript(render :partial => 'shared/feed_item', object: @micropost) %>");
+    $('.microposts').children(':first').hide().slideDown();
+    $('.field #micropost_content').val("");
+    $('form #micropost_content1').val("");
+<% end %>

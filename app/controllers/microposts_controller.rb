@@ -5,7 +5,6 @@ class MicropostsController < ApplicationController
 
 
   def index
-    
     @micropost  = current_user.microposts.build
     #@microposts = Micropost.search(params[:query]).page params[:page]
     @microposts = case params["show"]
@@ -39,35 +38,47 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
-    else
-      @feed_items = []
-      @microposts = []
-      render 'static_pages/home'
+    respond_to do |format|
+      if @micropost.save
+        format.html {redirect_to root_url}
+        format.js
+      else
+        @feed_items = []
+        @microposts = []
+        render 'static_pages/home'
+      end
     end
   end
 
   def destroy
     @micropost.destroy
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 
   def vote
     value = params[:type] == "up" ? 1 : -1
     @micropost = Micropost.find_by(id: params[:id])
     @micropost.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thank you for voting"
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.js
+    end
   end
 
   def retweet
-      micropost = Micropost.find_by(id: params[:id])
-      retweet = micropost.retweet_by(current_user)
-      if micropost.user == current_user
-        redirect_to current_user, :notice => "Sorry, you can't retweet your own tweets"
-      else
-        redirect_to current_user, :notice => "Succesfully retweeted"
+      @micropost = Micropost.find_by(id: params[:id])
+      retweet = @micropost.retweet_by(current_user)
+      respond_to do |format|
+        if @micropost.user == current_user
+          format.html { redirect_to current_user, :notice => "Sorry, you can't retweet your own tweets" }
+          format.js { render :partial => 'shared/errors' }
+        else
+          format.html { redirect_to current_user, :notice => "Succesfully retweeted".html_safe }
+          format.js
+        end
       end
 
   end

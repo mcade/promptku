@@ -15,3 +15,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+//= require jquery.infinitescroll
+//= require manual-trigger
