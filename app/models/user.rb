@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 
+  mount_uploader :image, ImageUploader
+
   has_many :retweets, :through => :microposts
   has_many :replies, foreign_key: "to_id", class_name: "Micropost"
   

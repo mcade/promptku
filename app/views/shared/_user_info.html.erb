@@ -1,4 +1,9 @@
-<%= link_to gravatar_for(current_user, size: 52), current_user %>
+<% if current_user.image.url == nil %>
+	<%= image_tag("promptkuface.svg", alt: "Promptku Smiley") %>
+<% else %>
+	<%= image_tag current_user.image_url.to_s %>
+<% end %>
+<br>
 <h1>
   <%= current_user.name %>
 </h1>

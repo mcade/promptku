@@ -3,8 +3,12 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for(@user, :html => {:multipart => true}) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
+
+      <%= image_tag("promptkuface.svg", alt: "Promptku Smiley") %>
+      <label for="user_image">Profile Picture</label>
+      <%= f.file_field :image %>
 
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -25,6 +29,5 @@
     <% end %>
 
     <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
   </div>
 </div>

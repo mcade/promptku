@@ -1,0 +1,9 @@
+<% if @feed_items.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/home_feed_item', collection: @feed_items %>
+  </ol>
+  <% unless (params[:page].present? || @feed_items.count <25) %>
+	<button class = "more">Show More</button>
+  <% end %>
+  	<%= paginate @feed_items %>
+<% end %>

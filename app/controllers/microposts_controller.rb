@@ -16,7 +16,7 @@ class MicropostsController < ApplicationController
           Kaminari.paginate_array(Micropost.popularMonthly).page(params[:page]).per(2)
       when "matching_prompts"
         matching = Micropost.where(content: params[:content])
-        Kaminari.paginate_array(matching).page(params[:page]).per(2)
+        Kaminari.paginate_array(matching).page(params[:page]).per(5)
       else
         if params[:tag].present?
           Kaminari.paginate_array(Micropost.tagged_with(params[:tag])).page(params[:page]).per(2)

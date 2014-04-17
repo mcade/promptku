@@ -19,6 +19,7 @@ gem 'pg_search'
 gem 'acts-as-taggable-on'
 gem 'font-awesome-sass'
 gem 'jquery-turbolinks'
+gem 'carrierwave'
 
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
