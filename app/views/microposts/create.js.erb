@@ -5,7 +5,9 @@
     $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
     $('.microposts').children(':first').hide().slideDown();
     $('form #micropost_content1').val("");
-    $('.nl-ti-text ul li.nl-ti-input input').val("")
-    $('a.nl-field-toggle').setAtttribute('placeholder', "")
+    $('div.field textarea#micropost_content').val("");
+    $('#micropost_tag_list').val("");
+    $('.nl-ti-text ul li.nl-ti-input input').val("");
+    // $('#post<%= @micropost.id %> a.nl-field-toggle').text("woof");
 
 <% end %>

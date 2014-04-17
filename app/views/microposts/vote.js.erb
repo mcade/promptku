@@ -1,1 +1,6 @@
-$("#vote<%= @micropost.id %>").html("This post has <%= @micropost.reputation_for(:votes).to_i %> points.")
+$("#vote<%= @micropost.id %> span").html('<%= pluralize @micropost.reputation_for(:votes).to_i, "vote" %>')
+<% if current_user && @micropost.has_evaluation?(:votes, current_user) %>
+    $("#vote<%= @micropost.id %> a").html('<%= link_to "<i class=\"fa fa-heart fa-3x\"> </i>".html_safe, vote_micropost_path(@micropost, type: "down"), :method => :post, :remote => true %>')
+<% else %>
+    $("#vote<%= @micropost.id %> a").html('<%= link_to "<i class=\"fa fa-heart-o fa-3x\"></i>".html_safe, vote_micropost_path(@micropost, type: "up"), :method => :post, :remote => true %>')
+<% end %>

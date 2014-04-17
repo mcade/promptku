@@ -1,5 +1,5 @@
 <% if @micropost.errors.any? %>
   alert('errors');
 <% else %>
-    $("#retweet<%= @micropost.id %>").html("Retweeted");
+    $("#retweet<%= @micropost.id %>").replaceWith('<i class="fa fa-retweet fa-3x"></i>');
 <% end %>

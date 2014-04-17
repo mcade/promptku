@@ -9,5 +9,9 @@ $(document).ready ->
     nextSelector: "div.pagination a[rel=next]" # selector for the NEXT link (to page 2)
     itemSelector: ".microposts li.micropost" # selector for all items you'll retrieve
     behavior: 'twitter'
+  , (newElements) ->
+    nlform = new NLForm(document.getElementById("post691"))
+    return
+
   $('.more').click ->
     $(".microposts").infinitescroll('retrieve');

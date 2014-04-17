@@ -1,3 +1,4 @@
+<% unless feed_item.content2 == "retweet" %>
 <div class="container demo-1">
 <div class="main clearfix">
 <li id="post<%= feed_item.id %>" class="micropost">
@@ -23,15 +24,20 @@
       <div id="vote<%= feed_item.id %>">
         <%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %>
         <% unless feed_item.user.id == current_user.id %>
-          <%= link_to "up", vote_micropost_path(feed_item,  type: "up"), :method => :post, :remote => true %>
-          <%= link_to "down", vote_micropost_path(feed_item,  type: "down"), :method => :post, :remote => true %>
+          <% if current_user && feed_item.has_evaluation?(:votes, current_user) %>
+            <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, vote_micropost_path(feed_item,  type: "down"), :method => :post, :remote => true %>
+          <% else %>
+            <%= link_to '<i class="fa fa-heart-o fa-3x"></i>'.html_safe, vote_micropost_path(feed_item,  type: "up"), :method => :post, :remote => true %>
+          <% end %>
         <% end %>
       </div>
     </span>
     <span id="retweet<%= feed_item.id %>">
-      <%= link_to "Retweet", retweet_micropost_path(feed_item), :method => :post, :remote => true %>
+      <% unless feed_item.user.id == current_user.id %>
+        <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(feed_item), :method => :post, :remote => true %>
+      <% end %>
     </span><span>
-      <%= link_to "Comments", feed_item %>
+      <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, feed_item %>
     </span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
@@ -63,3 +69,4 @@ $(function() {
   });
 });
 </script>
+<% end %>

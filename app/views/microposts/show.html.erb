@@ -1,11 +1,19 @@
 <div id="<%= @micropost.id %>">
-  <%= link_to gravatar_for(@micropost.user), @micropost.user %>
-    <span class="user">
-      <%= link_to @micropost.user.name, @micropost.user %>
-    </span>
 <span class="content">
-    <%= link_to "#{wrap(@micropost.content)}", microposts_path(show: "matching_prompts", content: @micropost.content) %><br>
-    <%= wrap(@micropost.content1) %><br>
+    <%= form_for((@micropost), url: {action: "create"}, :html => { :id => "nl-form", :class => "nl-form" }, method: :post, :authenticity_token => true) do |f| %>       
+        <%= f.hidden_field :content, :value => @micropost.content %>
+        <%= f.hidden_field :tag_list, :value => @micropost.tag_list%>
+        <span id="selectme<%= @micropost.id %>">
+          <%= link_to "#{wrap(@micropost.content)}", microposts_path(show: "matching_prompts", content: @micropost.content) %>
+          <input type="text" value="" placeholder="<%= @micropost.content1 %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+          <div class="nl-overlay"></div>
+        </span>
+        <br><span class="user" id="author<%= @micropost.id %>">-<%= link_to @micropost.user.name, @micropost.user %></span>
+        <div class="nl-submit-wrap">
+          <button id="btn<%= @micropost.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
+        </div>
+        <i class="fa fa-picture-o" id="clicker<%= @micropost.id %>"></i>
+      <% end %>
     <span>
     <p>Tags: <%= raw @micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
     <%= pluralize @micropost.reputation_for(:votes).to_i, "vote" %>
@@ -15,7 +23,9 @@
     <% end %>
     </span>
     <span>
-      <%= link_to "Retweet", retweet_micropost_path(@micropost), :method => :post %>
+      <% unless @micropost.user.id == current_user.id %>
+        <%= link_to "Retweet", retweet_micropost_path(@micropost), :method => :post %>
+      <% end %>
     </span>
 
 
@@ -37,3 +47,21 @@
     <%= render @micropost.comments %>
   </ul>
 </span>
+<script>
+  var nlform = new NLForm( document.getElementById( '<%= @micropost.id %>' ) );
+</script>
+<script>
+  $(function() {
+    $("i#clicker<%= @micropost.id %>").click(function() {
+      SelectText("selectme<%= @micropost.id %>");
+    });
+  });
+</script>
+<script>
+  $(function() {
+    $("div#<%= @micropost.id %> form input").keyup(function() {
+      $("span#author<%= @micropost.id %>").hide();
+      return $(".nl-form #btn<%= @micropost.id %>").fadeIn();
+    });
+  });
+</script>

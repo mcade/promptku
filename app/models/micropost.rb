@@ -54,8 +54,9 @@ class Micropost < ActiveRecord::Base
       "You already retweeted!"
     else
       t = Micropost.new
-      t.content = "RT #{self.user.name}: #{self.content}"
+      t.content = "#{self.content}"
       t.content1 = "#{self.content1}"
+      t.content2 = "retweet"
       t.tag_list = self.tag_list
       t.user = retweeter
       t.save
