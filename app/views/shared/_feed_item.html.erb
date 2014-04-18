@@ -22,7 +22,7 @@
       <% end %>
       <p>Tags: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
       <div id="vote<%= feed_item.id %>">
-        <%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %>
+        <span><%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %></span>
         <% unless feed_item.user.id == current_user.id %>
           <% if current_user && feed_item.has_evaluation?(:votes, current_user) %>
             <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, vote_micropost_path(feed_item,  type: "down"), :method => :post, :remote => true %>

@@ -59,9 +59,13 @@ class MicropostsController < ApplicationController
   end
 
   def vote
-    value = params[:type] == "up" ? 1 : -1
+    value = params[:type] == "up" ? 1 : 0
     @micropost = Micropost.find_by(id: params[:id])
-    @micropost.add_or_update_evaluation(:votes, value, current_user)
+    unless @micropost.has_evaluation?(:votes, current_user)
+      @micropost.add_or_update_evaluation(:votes, value, current_user)
+    else
+      @micropost.delete_evaluation(:votes, current_user)
+    end
     respond_to do |format|
       format.html {redirect_to :back }
       format.js

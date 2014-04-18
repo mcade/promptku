@@ -1,6 +1,6 @@
 <div class="container demo-1">
 <div class="main clearfix">
-<li id="post<%= home_feed_item.id %>" class="micropost"><%= @content_count.to_i %>
+<li id="post<%= home_feed_item.id %>" class="micropost"><%= @postcount %>
     <span class="content">
       <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>  
       <!-- add this to change from edit_>>>  , :html => { :id => "new_micropost", :class => "new_micropost" }-->     
