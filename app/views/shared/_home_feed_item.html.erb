@@ -17,7 +17,7 @@
           <i class="fa fa-picture-o" id="clicker<%= home_feed_item.id %>"></i>
       <% end %>
       <div id="vote<%= home_feed_item.id %>">
-        <%= pluralize home_feed_item.reputation_for(:votes).to_i, "vote" %>
+        <span><%= pluralize home_feed_item.reputation_for(:votes).to_i, "vote" %></span>
         <% unless home_feed_item.user.id == current_user.id %>
           <% if current_user && home_feed_item.has_evaluation?(:votes, current_user) %>
             <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, vote_micropost_path(home_feed_item,  type: "down"), :method => :post, :remote => true %>
