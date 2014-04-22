@@ -10,9 +10,8 @@
         <% end %>
         <br>
         <%= @user.name %>
-        (<%= pluralize(@user.reputation_for(:votes).to_i, "vote") %>)
       </h1>
-      <span><%= link_to "likes", likes_micropost_path(@user) %></span>
+      <span><%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, likes_micropost_path(@user) %></span>
     </section>
     <section>
       <%= render 'shared/stats' %>

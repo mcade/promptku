@@ -9,11 +9,11 @@
 </form>
 <div id="tag_cloud">
 	<% if params["show"] == "weekly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.week.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 7, :start_at => 1.week.ago ) %>
 	<% elsif params["show"] == "monthly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.month.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 7, :start_at => 1.month.ago ) %>
 	<% else %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.day.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 7, :start_at => 1.day.ago ) %>
 	<% end %>
 	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
 		<%= link_to tag.name, tag_path(tag.name), class: css_class%>
@@ -33,7 +33,7 @@
 <%= render 'shared/public_feed' %>
 
 
-<% unless (params[:page].present? || @microposts.count <5) %>
+<% unless (params[:page].present? || @microposts.count <10) %>
 	<button class = "more">Show More</button>
 <% end %>
 

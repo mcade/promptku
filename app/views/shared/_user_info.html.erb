@@ -1,21 +1,25 @@
 <% if current_user.image.url == nil %>
-	<%= image_tag("promptkuface.svg", alt: "Promptku Smiley") %>
+	<%= link_to image_tag("promptkuface.svg", alt: "Promptku Smiley"), current_user %>
 <% else %>
-	<%= image_tag current_user.image_url.to_s %>
+	<%= link_to image_tag(current_user.image_url.to_s), current_user %>
 <% end %>
 <br>
 <h1>
   <%= current_user.name %>
 </h1>
-<span>
-  <%= link_to "view my profile", current_user %>
-</span>
-<span>
-	(<%= pluralize(current_user.reputation_for(:votes).to_i, "vote") %>)
-</span>
 <span id="postcount">
-  <%= pluralize(current_user.microposts.count, "promptku") %>
+	<% if current_user.reputation_for(:votes).to_i > 0 %>
+		<% if current_user.microposts.count == 1 %>
+  			Your <%= pluralize(current_user.microposts.count, "promptku") %> has been loved by <%= pluralize(current_user.reputation_for(:votes).to_i, "person") %>
+  		<% elsif current_user.microposts.count > 1 %>
+  			Your <%= pluralize(current_user.microposts.count, "promptku") %> have been loved by <%= pluralize(current_user.reputation_for(:votes).to_i, "person") %>
+  		<% end %>
+  	<% elsif current_user.microposts.count > 0 %>
+  		You've made <%= pluralize(current_user.microposts.count, "promptku") %>
+  	<% else %>
+  		You haven't made any promptkus yet!
+  	<% end %>
 </span>
 <span>
-  <%= link_to "likes", likes_micropost_path(current_user) %>
+  <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, likes_micropost_path(current_user) %>
 </span>

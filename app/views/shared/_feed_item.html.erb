@@ -1,26 +1,27 @@
 <% unless feed_item.content2 == "retweet" %>
 <div class="container demo-1">
 <div class="main clearfix">
-<li id="post<%= feed_item.id %>" class="micropost">
-    <span class="content">
+<li id="post<%= feed_item.id %>" class="micropost" data-url="<%= feed_item.id %>">
+    <span class="content" data-url="<%= wrap(feed_item.content1) %>">
       <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>  
       <!-- add this to change from edit_>>>  , :html => { :id => "new_micropost", :class => "new_micropost" }-->     
         <%= f.hidden_field :content, :value => feed_item.content %>
         <%= f.hidden_field :tag_list, :value => feed_item.tag_list%>
         <!-- <%= f.text_area :content1, placeholder: feed_item.content1 %> -->
         <span id="selectme<%= feed_item.id %>">
-        <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content) %>
-        <input type="text" value="" placeholder="<%= feed_item.content1 %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+        <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content), {:class => 'prompt'} %>
+        <input type="text" value="" placeholder="<%= wrap(feed_item.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
         <div class="nl-overlay"></div>
         </span>
           <br><span class="user" id="author<%= feed_item.id %>">-<%= link_to feed_item.user.name, feed_item.user %></span>
-          <div class="nl-submit-wrap">
+          <div class="nl-submit-wrap" id="submit<%= feed_item.id %>">
+            <span id="tags<%= feed_item.id %>" class="formtags"><%= f.text_field :tag_list, :value => feed_item.tag_list, placeholder: "#tags" %></span><br>
             <button id="btn<%= feed_item.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
           </div>
           
           <i class="fa fa-picture-o" id="clicker<%= feed_item.id %>"></i>
       <% end %>
-      <p>Tags: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
+      <p class="tags">Tags: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
       <div id="vote<%= feed_item.id %>">
         <span><%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %></span>
         <% unless feed_item.user.id == current_user.id %>
@@ -43,30 +44,37 @@
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
   <% if current_user?(feed_item.user) %>
-    <%= link_to "delete", feed_item, method: :delete,
+    <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, feed_item, method: :delete,
                                      :remote=>true,
                                      data: { confirm: "You sure?" },
-                                     title: feed_item.content %>
+                                     :title => "delete",
+                                     :class => 'delete' %>
   <% end %>
 </li>
 </div>
 </div>
-<script>
+<%= javascript_tag do %>
       var nlform = new NLForm( document.getElementById( 'post<%= feed_item.id %>' ) );
-</script>
-<script>
+
 $(function() {
   $("i#clicker<%= feed_item.id %>").click(function() {
     SelectText("selectme<%= feed_item.id %>");
   });
 });
-</script>
-<script>
+
 $(function() {
   $("li#post<%= feed_item.id %> form input").keyup(function() {
     $("span#author<%= feed_item.id %>").hide();
-    return $(".nl-form #btn<%= feed_item.id %>").fadeIn();
+    $("span#tags<%= feed_item.id %>").fadeIn();
+    $("div.nl-submit-wrap#submit<%= feed_item.id %>").fadeIn();
   });
 });
-</script>
+$('#btn<%= feed_item.id %>').click(function( event ) {
+    $("span#author<%= feed_item.id %>").slideDown();
+    $("span#tags<%= feed_item.id %>").slideUp();
+    $('div.nl-submit-wrap#submit<%= feed_item.id %>').fadeOut(1300, function(){
+      $('#post<%= feed_item.id %> a.nl-field-toggle').text("<%= wrap(feed_item.content1) %>");
+  });
+});
+<% end %>
 <% end %>

@@ -1,12 +1,9 @@
 <%= form_for((@micropost), :remote => true, :authenticity_token => true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Create new prompt..." %>
-    <%= f.text_area :content1, placeholder: "Create new ku..." %>
-  </div>
-  <div class="field">
-  	<%= f.label :tags, "Tags (separated by commas)" %><br />
-  	<%= f.text_field :tag_list %>
+    <%= f.text_area :content, placeholder: "Create a new prompt..." %>
+    <%= f.text_area :content1, placeholder: "Add an editable ku..." %>
+  	<%= f.text_field :tag_list, placeholder: "#tags" %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

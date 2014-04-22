@@ -11,8 +11,8 @@
 
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
-	/* color: #ffe8e7;
-	background: #E96D65; */
+	color: #ffe8e7;
+	background: #E96D65;
 	font-weight: 300;
 }
 
@@ -177,30 +177,41 @@ a:active {
 }
 
 /* custom placeholder color */
-input::-webkit-input-placeholder {
+.nl-form input::-webkit-input-placeholder {
 	color: rgba(255,255,255,0.8);
 }
-
-input:active::-webkit-input-placeholder ,
-input:focus::-webkit-input-placeholder {
+li #micropost_tag_list::-webkit-input-placeholder {
 	color: rgba(255,255,255,0.2);
 }
 
-input::-moz-placeholder {
-	color: rgba(255,255,255,0.8);
-}
-
-input:active::-moz-placeholder,
-input:focus::-moz-placeholder {
+.nl-form input:active::-webkit-input-placeholder ,
+.nl-form input:focus::-webkit-input-placeholder {
 	color: rgba(255,255,255,0.2);
 }
 
-input:-ms-input-placeholder {  
+.nl-form input::-moz-placeholder {
 	color: rgba(255,255,255,0.8);
 }
+li #micropost_tag_list::-moz-placeholder {
+	color: rgba(255,255,255,0.2);
+}
 
-input:active::-ms-input-placeholder ,
-input:focus::-ms-input-placeholder {
+
+.nl-form input:active::-moz-placeholder,
+.nl-form input:focus::-moz-placeholder {
+	color: rgba(255,255,255,0.2);
+}
+
+.nl-form input:-ms-input-placeholder {  
+	color: rgba(255,255,255,0.8);
+}
+li #micropost_tag_list::-ms-input-placeholder {
+	color: rgba(255,255,255,0.2);
+}
+
+
+.nl-form input:active::-ms-input-placeholder ,
+.nl-form input:focus::-ms-input-placeholder {
 	color: rgba(255,255,255,0.2);
 }
 
@@ -221,6 +232,7 @@ input:focus::-ms-input-placeholder {
 /* submit button */
 .nl-submit-wrap {
 	margin-top: 0.4em;
+	display: none;
 }
 
 .nl-form .nl-submit {
@@ -234,12 +246,11 @@ input:focus::-ms-input-placeholder {
 	font-size: 40%;
 	font-weight: bold;
 	letter-spacing: 3px;
-	display: none;
 }
 
 .nl-submit:before {
 	font-family: FontAwesome;
-   	content: "\f08a";
+   	content: "\f061";
 	color: #fff;
 	float: left;
 	padding: 0 0.7em;
@@ -249,7 +260,7 @@ input:focus::-ms-input-placeholder {
 
 .nl-submit:hover:before {
 	font-family: FontAwesome;
-   	content: "\f004";
+   	content: "\f061";
 	color: #00aaf9;
 	float: left;
 	padding: 0 0.7em;

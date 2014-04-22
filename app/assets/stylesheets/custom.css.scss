@@ -1,3 +1,5 @@
+
+
 @import "bootstrap";
 
 
@@ -146,38 +148,24 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-  clear: both;
-}
-
 .stats {
   overflow: auto;
   a {
     float: left;
     padding: 0 10px;
     border-left: 1px solid $grayLighter;
-    color: gray;
+    color: lightgray;
     &:first-child {
       padding-left: 0;
       border: 0;
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
+      color: blue;
     }
   }
   strong {
     display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
   }
 }
 
@@ -255,7 +243,7 @@ input[type="checkbox"] {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: #efefef;
 }
 .gravatar {
   float: left;
@@ -276,4 +264,95 @@ aside {
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
+}
+
+
+/* my design */
+
+
+  
+a.prompt {
+  color: #ffe8e7;
+  &:hover {
+    text-decoration: none;
+    color: #c6c6c6;
+  }
+}
+
+a.nl-field-toggle {
+  &:hover {
+    text-decoration: none;
+  }
+}
+i.fa {
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  &:hover {
+    color: lightblue;
+  }
+}
+
+
+
+ul.users a {
+  color: #eaeaea;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+p.tags a {
+  color: rgba(53, 102, 53, .9);
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+#tag_cloud a {
+  color: #465535;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+a.delete i {
+  color: #b94a48;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+span.user {
+  font-size: .6em;
+  color: #e6e6e6;
+  float: right;
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      color: lightblue;
+    }
+  }
+}
+
+span.usercomment {
+  a {
+    color: lightblue;
+    text-decoration: none;
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+.formtags {
+  display: none;
+  font-size: .3em;
+  input {
+    width: 50%;
+  }
 }

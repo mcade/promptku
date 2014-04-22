@@ -9,9 +9,30 @@ $(document).ready ->
     nextSelector: "div.pagination a[rel=next]" # selector for the NEXT link (to page 2)
     itemSelector: ".microposts li.micropost" # selector for all items you'll retrieve
     behavior: 'twitter'
+    animate: true
   , (newElements) ->
-    nlform = new NLForm(document.getElementById("post691"))
-    return
+      $('li.micropost').each ->
+        nlid = $(this).data('url')
+        nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
+        $ ->
+          $("li#post" + nlid + " form input").keyup ->
+            $("span#author" + nlid).hide()
+            $("span#tags" + nlid).fadeIn()
+            $("div.nl-submit-wrap#submit" + nlid).fadeIn()
+        $("#btn" + nlid).click (event) ->
+          kutext = $("li#post" + nlid + " span.content").data('url')
+          $("span#author" + nlid).slideDown()
+          $("span#tags" + nlid).slideUp()
+          $("div.nl-submit-wrap#submit" + nlid).fadeOut 1300, ->
+            $("#post" + nlid + " a.nl-field-toggle").text kutext
+        $ ->
+          $("i#clicker" + nlid).click ->
+            SelectText "selectme" + nlid
+        return
+
+
+
+
 
   $('.more').click ->
     $(".microposts").infinitescroll('retrieve');
