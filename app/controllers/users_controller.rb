@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     def index
       # @users = User.paginate(page: params[:page])
       # Using pg_search for full text search and kaminari gem to paginate
-      @users = User.search(params[:query]).page params[:page]
+      @users = User.search(params[:query]).order('name ASC').page params[:page]
     end
 
 	  def new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     	if @user.save
         sign_in @user
     		flash[:success] = "Welcome to Promptku!"
-      		redirect_to @user
+      		redirect_to root_url
     	else
     		render 'new'
   		end

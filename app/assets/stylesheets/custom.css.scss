@@ -28,7 +28,7 @@ section {
 }
 
 textarea {
-  resize: vertical;
+  resize: none;
 }
 
 .center {
@@ -72,17 +72,22 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  color: rgb(90, 90, 90);
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: lightgray;
     text-decoration: none;
   }
 }
+.kulogo {
+  color: #FFA500;
+}
+
 
 /* footer */
 
@@ -448,5 +453,79 @@ div.search {
   margin: 0 auto;
   input.btn {
     display: none;
+  }
+}
+
+span.userlist {
+  font-size: 1.5em;
+}
+
+span.noposts {
+  border-top: 1px solid #e8e8e8;
+  a {
+    color: lightblue;
+    text-decoration: none;
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+span.viewprofile a{
+  color: lightblue;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+h1.welcome {
+  color: #b94a48;
+}
+
+span.prompt {
+  color: rgb(50, 50, 50);
+}
+
+h2.example {
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  font-size: 2em;
+  span {
+    color: #FFA500;
+    border-bottom: 1px dashed #b14943;
+  }
+}
+
+div.welcomeface img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+p.forgot a{
+  color: lightblue;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+p.newuser a {
+  color: lightblue;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+li.errors {
+  color: white;
+}
+
+div.help {
+  width: 60%;
+  margin: 0 auto;
+  h2 {
+    color: #e6e6e6;
   }
 }

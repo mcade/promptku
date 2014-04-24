@@ -22,15 +22,15 @@
   </div>
 <% else %>
   <div class="center hero-unit">
-    <h1>Welcome to Promptku</h1>
+    <h1 class="welcome">Welcome to <span class="prompt">prompt<span class="kulogo">ku</span></span></h1>
 
-    <h2>
-      This is the home page for the <%= link_to "Promptku",   root_path %> application.
+    <h2 class="example">
+      Finish each other's <span contenteditable="true">sandwiches.</span>
     </h2>
 
     <%= link_to "Sign up now!", signup_path,
                                 class: "btn btn-large btn-primary" %>
   </div>
 
-  <%= link_to image_tag("smiley.png", alt: "Smiley"), '#' %>
+  <div class="welcomeface"><%= image_tag("promptkuface.svg", alt: "Promptku Smiley") %></div>
 <% end %>

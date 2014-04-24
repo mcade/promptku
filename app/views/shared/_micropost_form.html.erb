@@ -1,5 +1,6 @@
 <%= form_for((@micropost), :remote => true, :authenticity_token => true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Create a new prompt..." %>
     <%= f.text_area :content1, placeholder: "Add an editable ku..." %>
