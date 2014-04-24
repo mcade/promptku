@@ -1,29 +1,25 @@
 <% unless feed_item.content2 == "retweet" %>
-<div class="container demo-1">
-<div class="main clearfix">
-<li id="post<%= feed_item.id %>" class="micropost" data-url="<%= feed_item.id %>">
+  <li id="post<%= feed_item.id %>" class="micropost" data-url="<%= feed_item.id %>">
     <span class="content" data-url="<%= wrap(feed_item.content1) %>">
-      <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>  
-      <!-- add this to change from edit_>>>  , :html => { :id => "new_micropost", :class => "new_micropost" }-->     
+      <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>     
         <%= f.hidden_field :content, :value => feed_item.content %>
-        <%= f.hidden_field :tag_list, :value => feed_item.tag_list%>
-        <!-- <%= f.text_area :content1, placeholder: feed_item.content1 %> -->
         <span id="selectme<%= feed_item.id %>">
-        <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content), {:class => 'prompt'} %>
-        <input type="text" value="" placeholder="<%= wrap(feed_item.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
-        <div class="nl-overlay"></div>
-        </span>
-          <br><span class="user" id="author<%= feed_item.id %>">-<%= link_to feed_item.user.name, feed_item.user %></span>
-          <div class="nl-submit-wrap" id="submit<%= feed_item.id %>">
-            <span id="tags<%= feed_item.id %>" class="formtags"><%= f.text_field :tag_list, :value => feed_item.tag_list, placeholder: "#tags" %></span><br>
-            <button id="btn<%= feed_item.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
-          </div>
-          
-          <i class="fa fa-picture-o" id="clicker<%= feed_item.id %>"></i>
+          <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content), {:class => 'prompt'} %>
+          <input type="text" value="" placeholder="<%= wrap(feed_item.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+          <div class="nl-overlay"></div>
+        </span><br>
+        <span class="user" id="author<%= feed_item.id %>">-<%= link_to feed_item.user.name, feed_item.user %></span>
+        <div class="nl-submit-wrap" id="submit<%= feed_item.id %>">
+          <span id="tags<%= feed_item.id %>" class="formtags"><%= f.text_field :tag_list, :value => feed_item.tag_list, placeholder: "#tags" %></span><br>
+          <button id="btn<%= feed_item.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
+        </div>
       <% end %>
-      <p class="tags">Tags: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
-      <div id="vote<%= feed_item.id %>">
-        <span><%= pluralize feed_item.reputation_for(:votes).to_i, "vote" %></span>
+    </span>
+    <p class="tags"><%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
+
+    <div class="functions">
+      <!-- voting -->
+      <span id="vote<%= feed_item.id %>">
         <% unless feed_item.user.id == current_user.id %>
           <% if current_user && feed_item.has_evaluation?(:votes, current_user) %>
             <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, vote_micropost_path(feed_item,  type: "down"), :method => :post, :remote => true %>
@@ -31,50 +27,61 @@
             <%= link_to '<i class="fa fa-heart-o fa-3x"></i>'.html_safe, vote_micropost_path(feed_item,  type: "up"), :method => :post, :remote => true %>
           <% end %>
         <% end %>
-      </div>
-    </span>
-    <span id="retweet<%= feed_item.id %>">
-      <% unless feed_item.user.id == current_user.id %>
-        <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(feed_item), :method => :post, :remote => true %>
-      <% end %>
-    </span><span>
-      <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, feed_item %>
-    </span>
-    <span class="timestamp">
-      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-    </span>
-  <% if current_user?(feed_item.user) %>
-    <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, feed_item, method: :delete,
+      </span>
+      <!-- share as image -->
+      <i class="fa fa-picture-o fa-3x" id="clicker<%= feed_item.id %>"></i>
+      <!-- repost -->
+      <span id="retweet<%= feed_item.id %>">
+        <% unless feed_item.user.id == current_user.id %>
+          <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(feed_item), :method => :post, :remote => true %>
+        <% end %>
+      </span>
+      <!-- comment -->
+      <span>
+        <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, feed_item %>
+      </span>
+    </div>
+    <div class="timeago">
+      <span class="timestamp">
+        Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+      </span>
+      <% if current_user?(feed_item.user) %>
+        <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, feed_item, method: :delete,
                                      :remote=>true,
                                      data: { confirm: "You sure?" },
                                      :title => "delete",
                                      :class => 'delete' %>
-  <% end %>
-</li>
-</div>
-</div>
-<%= javascript_tag do %>
-      var nlform = new NLForm( document.getElementById( 'post<%= feed_item.id %>' ) );
+      <% end %>
+    </div>
 
-$(function() {
-  $("i#clicker<%= feed_item.id %>").click(function() {
-    SelectText("selectme<%= feed_item.id %>");
-  });
-});
+    <%= javascript_tag do %>
+          var nlform = new NLForm( document.getElementById( 'post<%= feed_item.id %>' ) );
 
-$(function() {
-  $("li#post<%= feed_item.id %> form input").keyup(function() {
-    $("span#author<%= feed_item.id %>").hide();
-    $("span#tags<%= feed_item.id %>").fadeIn();
-    $("div.nl-submit-wrap#submit<%= feed_item.id %>").fadeIn();
-  });
-});
-$('#btn<%= feed_item.id %>').click(function( event ) {
-    $("span#author<%= feed_item.id %>").slideDown();
-    $("span#tags<%= feed_item.id %>").slideUp();
-    $('div.nl-submit-wrap#submit<%= feed_item.id %>').fadeOut(1300, function(){
-      $('#post<%= feed_item.id %> a.nl-field-toggle').text("<%= wrap(feed_item.content1) %>");
-  });
-});
-<% end %>
+    $(function() {
+      $("i#clicker<%= feed_item.id %>").click(function() {
+        SelectText("selectme<%= feed_item.id %>");
+      });
+    });
+
+    $(function() {
+      $("li#post<%= feed_item.id %> form input").keyup(function() {
+        $("span#author<%= feed_item.id %>").hide();
+        $("span#tags<%= feed_item.id %>").fadeIn();
+        $("div.nl-submit-wrap#submit<%= feed_item.id %>").fadeIn();
+      });
+    });
+    $('#btn<%= feed_item.id %>').click(function( event ) {
+      $("span#author<%= feed_item.id %>").slideDown();
+      $("span#tags<%= feed_item.id %>").slideUp();
+      $('div.nl-submit-wrap#submit<%= feed_item.id %>').fadeOut(1300, function(){
+        $('#post<%= feed_item.id %> a.nl-field-toggle').text("<%= wrap(feed_item.content1) %>");
+        if ($('button.more').length !== 0) {
+          $('li.micropost').last().slideUp('slow', function(){
+            $('li.micropost').last().remove();
+          });
+        }
+      });
+    });
+    <% end %>
+  </li>
 <% end %>

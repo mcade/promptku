@@ -1,44 +1,68 @@
 <% provide(:title, 'Trending Microposts') %>
-<h1>Trending Microposts</h1>
-<form action="" method="get">
-  <fieldset>
-     <button type="submit" name="show" value="daily">Today</button>
-     <button type="submit" name="show" value="weekly">This week</button>
-     <button type="submit" name="show" value="monthly">This month</button>
-  </fieldset>
-</form>
+<% unless params["query"].present? %>
+	<h1 class="trending">Trending</h1>
+<% else %>
+	<h1 class="trending">Search Results</h1>
+<% end %>
+<div class="trendoptions span5 offset4">
+	<form action="" method="get">
+	  <fieldset>
+	  	<% unless params["show"] == "weekly" || params["show"] == "monthly" || params[:query].present? %>
+	    	<button class="btn btn-info selected" type="submit" name="show" value="daily">Today</button>
+	    <% else %>
+	    	<button class="btn btn-info" type="submit" name="show" value="daily">Today</button>
+	    <% end %>
+	    <% if params["show"] == "weekly" %>
+	    	<button class="btn btn-info selected" type="submit" name="show" value="weekly">This week</button>
+	    <% else %>
+	    	<button class="btn btn-info" type="submit" name="show" value="weekly">This week</button>
+	    <% end %>
+	    <% if params["show"] == "monthly" %>
+	    	<button class="btn btn-info selected" type="submit" name="show" value="monthly">This month</button>
+	    <% else %>
+	    	<button class="btn btn-info" type="submit" name="show" value="monthly">This month</button>
+	    <% end %>
+	    <i class="fa fa-search fa-2x"></i>
+	  </fieldset>
+	</form>
+</div>
+<div class="search">
+	<%= form_tag microposts_path, method: :get do %>
+		<%= text_field_tag :query, params[:query], placeholder: 'Search for a promptku' %>
+		<%= submit_tag "Search", name: nil, class: "btn btn-lrg btn-primary" %>
+		<% if params[:query].present? %>
+			<% @microposts = Micropost.search(params[:query]).page params[:page] %>
+		<% end %>
+	<% end %>
+</div>
 <div id="tag_cloud">
 	<% if params["show"] == "weekly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 7, :start_at => 1.week.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.week.ago ) %>
 	<% elsif params["show"] == "monthly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 7, :start_at => 1.month.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.month.ago ) %>
 	<% else %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 7, :start_at => 1.day.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.day.ago ) %>
 	<% end %>
 	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
 		<%= link_to tag.name, tag_path(tag.name), class: css_class%>
 	<% end %>
 </div>
 <div class="col-md-6 col-md-offset-3">
-
-	<%= form_tag microposts_path, method: :get do %>
-		<%= text_field_tag :query, params[:query], placeholder: 'Search for a micropost' %>
-		<%= submit_tag "Search", name: nil, class: "btn btn-lrg btn-primary" %>
-		<% if params[:query].present? %>
-			<% @microposts = Micropost.search(params[:query]).page params[:page] %>
-		<% end %>
+	<%= render 'shared/public_feed' %>
+	<% unless (params[:page].present? || @microposts.count <10) %>
+		<button class = "more btn btn-large btn-info">Show More</button>
 	<% end %>
-
-
-<%= render 'shared/public_feed' %>
-
-
-<% unless (params[:page].present? || @microposts.count <10) %>
-	<button class = "more">Show More</button>
-<% end %>
-
-
-<%= paginate @microposts %>
-
-
+	<%= paginate @microposts %>
 </div>
+<%= javascript_tag do %>
+  	$(function() {
+    	$("i.fa-search").click(function() {
+      		$("div.search").slideDown();
+    	});
+  	});
+  	$(function() {
+    	$("div.search input#query").keyup(function() {
+      		$("div.search input.btn").fadeIn();
+    	});
+  	});
+<% end %>

@@ -25,6 +25,9 @@ $(document).ready ->
           $("span#tags" + nlid).slideUp()
           $("div.nl-submit-wrap#submit" + nlid).fadeOut 1300, ->
             $("#post" + nlid + " a.nl-field-toggle").text kutext
+            if $("button.more").length isnt 0
+              $("li.micropost").last().slideUp "slow", ->
+                $("li.micropost").last().remove()
         $ ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid

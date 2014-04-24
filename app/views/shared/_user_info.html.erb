@@ -5,7 +5,10 @@
 <% end %>
 <br>
 <h1>
-  <%= current_user.name %>
+  <span class="userinfo">
+    <%= link_to '<i class="fa fa-heart"></i>'.html_safe, likes_micropost_path(current_user) %>
+    <%= current_user.name %>
+  </span>
 </h1>
 <span id="postcount">
 	<% if current_user.reputation_for(:votes).to_i > 0 %>
@@ -19,7 +22,4 @@
   	<% else %>
   		You haven't made any promptkus yet!
   	<% end %>
-</span>
-<span>
-  <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, likes_micropost_path(current_user) %>
 </span>

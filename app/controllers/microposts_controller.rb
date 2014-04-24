@@ -8,8 +8,6 @@ class MicropostsController < ApplicationController
     @micropost  = current_user.microposts.build
     #@microposts = Micropost.search(params[:query]).page params[:page]
     @microposts = case params["show"]
-      when "daily"
-          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(10)
       when "weekly"
           Kaminari.paginate_array(Micropost.popularWeekly).page(params[:page]).per(10)
       when "monthly"
@@ -21,7 +19,7 @@ class MicropostsController < ApplicationController
         if params[:tag].present?
           Kaminari.paginate_array(Micropost.tagged_with(params[:tag])).page(params[:page]).per(10)
         else
-          Kaminari.paginate_array(Micropost.popular).page(params[:page]).per(10)
+          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(10)
         end
     end
   end

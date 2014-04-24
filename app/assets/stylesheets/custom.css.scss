@@ -16,6 +16,7 @@ $grayMediumLight: #eaeaea;
 
 html {
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 body {
@@ -46,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -180,7 +181,7 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
- margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 input[type="checkbox"] {
@@ -235,8 +236,12 @@ input[type="checkbox"] {
   margin: 10px 0 0 0;
 
   li {
-    padding: 10px -10px;
     border-top: 1px solid #e8e8e8;
+    clear: both;
+    margin-bottom: 0.3em;
+    &.nl-ti-input {
+      margin-bottom: 0;
+    }
   }
 }
 .content {
@@ -309,12 +314,23 @@ p.tags a {
     color: blue;
   }
 }
+p.tags {
+  padding-top: 2em;
+  margin: 0;
+  float: left;
+  clear: both;
+}
 
-#tag_cloud a {
-  color: #465535;
-  text-decoration: none;
-  &:hover {
-    color: blue;
+#tag_cloud {
+  text-align: center;
+  margin: 0 auto;
+  a {
+    padding-right: 0.5em;
+    color: #465535;
+    text-decoration: none;
+    &:hover {
+      color: blue;
+    }
   }
 }
 
@@ -354,5 +370,83 @@ span.usercomment {
   font-size: .3em;
   input {
     width: 50%;
+  }
+}
+
+
+/* promptku functions */
+div.functions {
+  display: inline-block;
+  clear: right;
+  float: right;
+  padding-top: 0.2em;
+  i {
+    padding-top: 0.2em;
+    padding-right: 0.1em;
+  }
+}
+
+.timeago {
+  clear: both;
+}
+
+span.followbtn {
+  padding-top: 0.5em;
+}
+
+h1 span.userinfo {
+  padding-top: 0.3em;
+}
+
+span.postbutton .btn {
+  background: rgba(212, 205, 178, 0.4);
+  width: 100%;
+  &:hover {
+    background: rgba(212, 205, 178, 0.5);
+  }
+}
+
+button.more {
+  width: 100%;
+  height: 4em;
+  margin-top: 2em;
+  background: rgba(212, 205, 178, 0.2);
+  width: 100%;
+  &:hover {
+    background: rgba(212, 205, 178, 0.3);
+  }
+  &:focus {
+    background: rgba(212, 205, 178, 0.3);
+  }
+}
+
+div.trendoptions button {
+  margin-right: 0.3em;
+  background: rgba(212, 205, 240, 0.4);
+  &:hover {
+    background: rgba(212, 205, 240, 0.5);
+  }
+  &:focus {
+    background: rgba(212, 205, 240, 0.5);
+  }
+  &.selected {
+    background: rgba(90, 90, 90, 0.2);
+  }
+}
+
+div#infscr-loading {
+  padding-top: 1.5em;
+}
+
+div.span8 h3 {
+  text-align: center;
+}
+
+div.search {
+  display: none;
+  width: 50%;
+  margin: 0 auto;
+  input.btn {
+    display: none;
   }
 }

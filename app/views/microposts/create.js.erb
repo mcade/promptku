@@ -4,10 +4,7 @@
     $('.microposts').prepend("<%= escape_javascript(render :partial => 'shared/feed_item', object: @micropost) %>");
     $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
     $('.microposts').children(':first').hide().slideDown();
-    $('form #micropost_content1').val("");
     $('div.field textarea#micropost_content').val("");
-    $('#micropost_tag_list').val("");
-    $('.formtags input').val("");
     $('.nl-ti-text ul li.nl-ti-input input').val("");
     // $('#post<%= @micropost.id %> a.nl-field-toggle').text("woof");
 

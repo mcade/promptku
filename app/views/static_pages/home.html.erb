@@ -12,8 +12,12 @@
       </section>
     </aside>
     <div class="span8">
-      <h3>Micropost Feed</h3>
+      <h3>promptku feed</h3>
       <%= render 'shared/home_feed' %>
+      <% unless (params[:page].present? || @feed_items.count <10) %>
+        <button class = "more btn btn-large btn-info">Show More</button>
+      <% end %>
+      <%= paginate @feed_items %>
     </div>
   </div>
 <% else %>

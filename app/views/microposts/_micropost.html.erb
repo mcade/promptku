@@ -1,23 +1,23 @@
 <li class="micropost" id="post<%= micropost.id %>" data-url="<%= micropost.id %>">
   <span class="content" data-url="<%= wrap(micropost.content1) %>">
-    <span>
-      <%= form_for((@micropost), :html => { :id => "nl-form", :class => "nl-form" }, :remote => true, :authenticity_token => true) do |f| %>       
-        <%= f.hidden_field :content, :value => micropost.content %>
-        <%= f.hidden_field :tag_list, :value => micropost.tag_list%>
-        <span id="selectme<%= micropost.id %>">
-          <%= link_to "#{wrap(micropost.content)}", microposts_path(show: "matching_prompts", content: micropost.content), {:class => 'prompt'} %>
-          <input type="text" value="" placeholder="<%= wrap(micropost.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
-          <div class="nl-overlay"></div>
-        </span>
-        <div class="nl-submit-wrap" id="submit<%= micropost.id %>">
-          <span id="tags<%= micropost.id %>" class="formtags"><%= f.text_field :tag_list, :value => micropost.tag_list, placeholder: "#tags" %></span><br>
-          <button id="btn<%= micropost.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
-        </div>
-        <i class="fa fa-picture-o" id="clicker<%= micropost.id %>" data-url="clicker<%= micropost.id %>"></i>
-      <% end %>
-    <p class="tags">Tags: <%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
-    <div id="vote<%= micropost.id %>">
-      <span><%= pluralize micropost.reputation_for(:votes).to_i, "vote" %></span>
+    <%= form_for((@micropost), :html => { :id => "nl-form", :class => "nl-form" }, :remote => true, :authenticity_token => true) do |f| %>       
+      <%= f.hidden_field :content, :value => micropost.content %>
+      <span id="selectme<%= micropost.id %>">
+        <%= link_to "#{wrap(micropost.content)}", microposts_path(show: "matching_prompts", content: micropost.content), {:class => 'prompt'} %>
+        <input type="text" value="" placeholder="<%= wrap(micropost.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+        <div class="nl-overlay"></div>
+      </span>
+      <div class="nl-submit-wrap" id="submit<%= micropost.id %>">
+        <span id="tags<%= micropost.id %>" class="formtags"><%= f.text_field :tag_list, :value => micropost.tag_list, placeholder: "#tags" %></span><br>
+        <button id="btn<%= micropost.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
+      </div>
+    <% end %>
+  </span>
+  <p class="tags"><%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
+
+  <div class="functions">
+    <!-- voting -->
+    <span id="vote<%= micropost.id %>">
       <% unless micropost.user.id == current_user.id %>
         <% if current_user && micropost.has_evaluation?(:votes, current_user) %>
           <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, vote_micropost_path(micropost, type: "down"), :method => :post, :remote => true %>
@@ -25,51 +25,61 @@
           <%= link_to '<i class="fa fa-heart-o fa-3x"></i>'.html_safe, vote_micropost_path(micropost, type: "up"), :method => :post, :remote => true %>
         <% end %>
       <% end %>
-    </div>
     </span>
+    <!-- share as image -->
+    <i class="fa fa-picture-o fa-3x" id="clicker<%= micropost.id %>" data-url="clicker<%= micropost.id %>"></i>
+    <!-- repost -->
     <span id="retweet<%= micropost.id %>">
       <% unless micropost.user.id == current_user.id %>
         <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(micropost), :method => :post, :remote => true %>
       <% end %>
-    </span><span>
+    </span>
+    <!-- comment -->
+    <span>
       <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, micropost %>
     </span>
-
-  </span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-  </span>
-  <% if current_user?(micropost.user) %>
-    <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, micropost, method: :delete,
+  </div>
+  <div class="timeago">
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    </span>
+    <% if current_user?(micropost.user) %>
+      <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, micropost, method: :delete,
                                      :remote=>true,
                                      data: { confirm: "You sure?" },
                                      :title => "delete",
                                      :class => 'delete'%>
-  <% end %>
+    <% end %>
+  </div>
 
-<%= javascript_tag do %>
-  window.nlform = new NLForm( document.getElementById( 'post<%= micropost.id %>' ) )
+  <%= javascript_tag do %>
+    window.nlform = new NLForm( document.getElementById( 'post<%= micropost.id %>' ) )
 
-$(function() {
-  $("i#clicker<%= micropost.id %>").click(function() {
-    SelectText("selectme<%= micropost.id %>");
+  $(function() {
+    $("i#clicker<%= micropost.id %>").click(function() {
+      SelectText("selectme<%= micropost.id %>");
+    });
   });
-});
 
-$(function() {
-  $("li#post<%= micropost.id %> form input").keyup(function() {
-    $("span#author<%= micropost.id %>").hide();
-    $("span#tags<%= micropost.id %>").fadeIn();
-    $("div.nl-submit-wrap#submit<%= micropost.id %>").fadeIn();
+  $(function() {
+    $("li#post<%= micropost.id %> form input").keyup(function() {
+      $("span#author<%= micropost.id %>").hide();
+      $("span#tags<%= micropost.id %>").fadeIn();
+      $("div.nl-submit-wrap#submit<%= micropost.id %>").fadeIn();
+    });
   });
-});
 
-$('#btn<%= micropost.id %>').click(function( event ) {
+  $('#btn<%= micropost.id %>').click(function( event ) {
     $("span#author<%= micropost.id %>").slideDown();
     $("span#tags<%= micropost.id %>").slideUp();
     $('div.nl-submit-wrap#submit<%= micropost.id %>').fadeOut(1300, function(){
       $('#post<%= micropost.id %> a.nl-field-toggle').text("<%= wrap(micropost.content1) %>");
+      if ($('button.more').length !== 0) {
+        $('li.micropost').last().slideUp('slow', function(){
+          $('li.micropost').last().remove();
+        });
+      }
+    });
   });
-});
-<% end %>
+  <% end %>
 </li>

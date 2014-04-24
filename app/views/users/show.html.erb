@@ -9,23 +9,23 @@
           <%= image_tag @user.image_url.to_s %><br>
         <% end %>
         <br>
+        <%= link_to '<i class="fa fa-heart"></i>'.html_safe, likes_micropost_path(@user) %>
         <%= @user.name %>
       </h1>
-      <span><%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, likes_micropost_path(@user) %></span>
     </section>
     <section>
       <%= render 'shared/stats' %>
+      <span class="followbtn"><%= render 'follow_form' if signed_in? %></span>
     </section>
   </aside>
   <div class="span8">
-    <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
       <h3 id="postcount"><%= pluralize(@user.microposts.count, "promptku") %></h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
-      <% unless (params[:page].present? || @microposts.count <25) %>
-        <button class = "more">Show More</button>
+      <% unless (params[:page].present? || @microposts.count <10) %>
+        <button class = "more btn btn-large btn-info">Show More</button>
       <% end %>
         <%= paginate @microposts %>
     <% end %>

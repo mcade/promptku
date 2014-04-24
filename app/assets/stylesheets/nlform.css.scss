@@ -22,29 +22,6 @@ a:active {
 	color: #333;
 }
 
-/* Header Style 
-.main,
-.container > header {
-	margin: 0 auto;
-	padding: 2em;
-} */
-/* Main Content */
-.main {
-	max-width: 50em;
-}
-
-
-@font-face {
-	font-family: 'nlicons';
-	src:font-url('nlicons.eot');
-	src:font-url('nlicons.eot?#iefix') format('embedded-opentype'),
-		url('nlicons.woff') format('woff'),
-		url('nlicons.ttf') format('truetype'),
-		url('nlicons.svg#nlicons') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
 /* general style for the form */
 .nl-form {
 	width: 100%;
@@ -152,6 +129,15 @@ a:active {
 	padding: 0.2em 2em 0.2em 0.5em;
 	border-bottom: none;
 	color: #fff;
+	&::-webkit-input-placeholder {
+		padding-top: .4em;
+	}
+	&::-moz-placeholder {
+		padding-top: .4em;
+	}
+	&:-ms-input-placeholder {
+		padding-top: .4em;
+	}
 }
 
 .nl-form .nl-field-go {
@@ -205,7 +191,7 @@ li #micropost_tag_list::-moz-placeholder {
 .nl-form input:-ms-input-placeholder {  
 	color: rgba(255,255,255,0.8);
 }
-li #micropost_tag_list::-ms-input-placeholder {
+li #micropost_tag_list:-ms-input-placeholder {
 	color: rgba(255,255,255,0.2);
 }
 
@@ -231,7 +217,7 @@ li #micropost_tag_list::-ms-input-placeholder {
 
 /* submit button */
 .nl-submit-wrap {
-	margin-top: 0.4em;
+	margin-top: 0em;
 	display: none;
 }
 

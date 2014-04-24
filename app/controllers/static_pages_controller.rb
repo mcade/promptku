@@ -3,7 +3,6 @@ class StaticPagesController < ApplicationController
     if signed_in?
       @micropost  = current_user.microposts.build
       @feed_items = current_user.feed.page(params[:page]).per(10)
-      @postcount = Micropost.count
     end
   end
 
