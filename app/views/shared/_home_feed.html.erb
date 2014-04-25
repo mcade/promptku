@@ -3,7 +3,9 @@
     <%= render partial: 'shared/home_feed_item', collection: @feed_items %>
   </ol>
  <% else %>
- 	<span class="span8 noposts">There's nothing here yet. Check out <%= link_to "trending", microposts_path %> promptkus to find new and interesting people to follow.</span>
+    <ol class="microposts">
+ 	  <span class="span8 noposts">There's nothing here yet. Check out <%= link_to "trending", microposts_path %> promptkus to find new and interesting people to follow.</span>
+    </ol>
 <% end %>
 
 <!-- Share As Image BEGIN -->      

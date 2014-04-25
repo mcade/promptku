@@ -5,26 +5,28 @@
 	<h1 class="trending">Search Results</h1>
 <% end %>
 <div class="trendoptions span5 offset4">
-	<form action="" method="get">
-	  <fieldset>
-	  	<% unless params["show"] == "weekly" || params["show"] == "monthly" || params[:query].present? %>
-	    	<button class="btn btn-info selected" type="submit" name="show" value="daily">Today</button>
-	    <% else %>
-	    	<button class="btn btn-info" type="submit" name="show" value="daily">Today</button>
-	    <% end %>
-	    <% if params["show"] == "weekly" %>
-	    	<button class="btn btn-info selected" type="submit" name="show" value="weekly">This week</button>
-	    <% else %>
-	    	<button class="btn btn-info" type="submit" name="show" value="weekly">This week</button>
-	    <% end %>
-	    <% if params["show"] == "monthly" %>
-	    	<button class="btn btn-info selected" type="submit" name="show" value="monthly">This month</button>
-	    <% else %>
-	    	<button class="btn btn-info" type="submit" name="show" value="monthly">This month</button>
-	    <% end %>
-	    <i class="fa fa-search fa-2x"></i>
-	  </fieldset>
-	</form>
+	<% unless params[:tag].present? %>
+		<form action="" method="get">
+		  <fieldset>
+		  	<% if params["show"] == "daily" %>
+		    	<button class="btn btn-info selected" type="submit" name="show" value="daily">Today</button>
+		    <% else %>
+		    	<button class="btn btn-info" type="submit" name="show" value="daily">Today</button>
+		    <% end %>
+		    <% unless params["show"] == "daily" || params["show"] == "monthly" || params[:query].present? %>
+		    	<button class="btn btn-info selected" type="submit" name="show" value="weekly">This week</button>
+		    <% else %>
+		    	<button class="btn btn-info" type="submit" name="show" value="weekly">This week</button>
+		    <% end %>
+		    <% if params["show"] == "monthly" %>
+		    	<button class="btn btn-info selected" type="submit" name="show" value="monthly">This month</button>
+		    <% else %>
+		    	<button class="btn btn-info" type="submit" name="show" value="monthly">This month</button>
+		    <% end %>
+		    <i class="fa fa-search fa-2x"></i>
+		  </fieldset>
+		</form>
+	<% end %>
 </div>
 <div class="search">
 	<%= form_tag microposts_path, method: :get do %>
@@ -36,12 +38,12 @@
 	<% end %>
 </div>
 <div id="tag_cloud">
-	<% if params["show"] == "weekly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.week.ago ) %>
+	<% if params["show"] == "daily" %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.day.ago ) %>
 	<% elsif params["show"] == "monthly" %>
 		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.month.ago ) %>
 	<% else %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.day.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.week.ago ) %>
 	<% end %>
 	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
 		<%= link_to tag.name, tag_path(tag.name), class: css_class%>

@@ -1,9 +1,11 @@
 ActionMailer::Base.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
-  :domain               => "promptku.com",
+  :domain               => "www.promptku.com",
   :user_name            => "promptku",
-  :password             => "foobar8844",
+  :password             => "yosoy882",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
+
+ActionMailer::Base.default_url_options[:host] = 'http://desolate-savannah-3068.herokuapp.com'

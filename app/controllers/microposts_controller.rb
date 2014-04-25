@@ -8,18 +8,18 @@ class MicropostsController < ApplicationController
     @micropost  = current_user.microposts.build
     #@microposts = Micropost.search(params[:query]).page params[:page]
     @microposts = case params["show"]
-      when "weekly"
-          Kaminari.paginate_array(Micropost.popularWeekly).page(params[:page]).per(10)
+      when "daily"
+          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(10)
       when "monthly"
           Kaminari.paginate_array(Micropost.popularMonthly).page(params[:page]).per(10)
       when "matching_prompts"
         matching = Micropost.where(content: params[:content])
         Kaminari.paginate_array(matching).page(params[:page]).per(10)
       else
-        if params[:tag].present?
+        if params[:tag].present? && params["show"].nil?
           Kaminari.paginate_array(Micropost.tagged_with(params[:tag])).page(params[:page]).per(10)
         else
-          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(10)
+          Kaminari.paginate_array(Micropost.popularWeekly).page(params[:page]).per(10)
         end
     end
   end
@@ -36,6 +36,9 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    if @micropost.content1.blank?
+      @micropost.content1 = "..."
+    end
     respond_to do |format|
       if @micropost.save
         format.html {redirect_to root_url}
