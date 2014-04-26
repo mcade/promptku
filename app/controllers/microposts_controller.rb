@@ -30,6 +30,7 @@ class MicropostsController < ApplicationController
   end
 
   def likes
+    @user = User.find(params[:id])
     @micropost  = current_user.microposts.build
     @microposts = Kaminari.paginate_array(Micropost.evaluated_by(:votes, User.find(params[:id])).reorder('rs_evaluations.created_at DESC')).page(params[:page]).per(25)
   end

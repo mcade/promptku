@@ -1,24 +1,24 @@
-<% unless current_user.name == user.name %>
-  <li>
-    <span class="userlist"><%= link_to user.name, user %></span>
-    <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "delete", user, method: :delete,
+<li>
+  <span class="userlist"><%= link_to user.name, user %></span>
+  <% if current_user.admin? && !current_user?(user) %>
+    | <%= link_to "delete", user, method: :delete,
                                     data: { confirm: "You sure?" } %>
-    <% end %>
-    <div id ="follow_form_<%= user.id %>">
-  	<% if current_user.following?(user) %>
-      <%= form_for(current_user.relationships.find_by(followed_id: user.id),
-               html: { method: :delete },
-               remote: true) do |f| %>
-        <%= f.submit "Unfollow", class: "btn" %>
-      <% end %>
-    <% else %>
-      <%= form_for(current_user.relationships.build(followed_id: user.id),
-               remote: true) do |f| %>
-        <div><%= f.hidden_field :followed_id %></div>
-        <%= f.submit "Follow", class: "btn btn-primary" %>
+  <% end %>
+  <div id ="follow_form_<%= user.id %>">
+    <% unless current_user.name == user.name %>
+      <% if current_user.following?(user) %>
+        <%= form_for(current_user.relationships.find_by(followed_id: user.id),
+                   html: { method: :delete },
+                   remote: true) do |f| %>
+          <%= f.submit "Unfollow", class: "btn" %>
         <% end %>
-    	<% end %>
-    </div>
-  </li>
-<% end %>
+      <% else %>
+        <%= form_for(current_user.relationships.build(followed_id: user.id),
+                   remote: true) do |f| %>
+          <div><%= f.hidden_field :followed_id %></div>
+          <%= f.submit "Follow", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</li>

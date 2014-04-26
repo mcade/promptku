@@ -9,7 +9,7 @@
       <% end %>
       <h1><%= @user.name %></h1>
       <span><b>Promptkus:</b> <%= @user.microposts.count %></span>
-      <span class="viewprofile"><%= link_to "view my profile", @user %></span>
+      <span class="viewprofile"><%= link_to "view profile", @user %></span>
     </section>
     <section>
       <%= render 'shared/stats' %>
