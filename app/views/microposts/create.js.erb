@@ -2,11 +2,10 @@
   alert('errors');
 <% else %>
 	    $('.microposts').prepend("<%= escape_javascript(render :partial => 'shared/feed_item', object: @micropost) %>");
-	    var postContainer = jQuery('ol.microposts');
-	    postContainer.find('.micropost').each(function() {
+	    $('li.micropost').each(function() {
 		  var nlform, nlid;
 		  nlid = $(this).data('url');
-		  if ($("li#post" + nlid + " div.nl-field").length === 0) {
+		  if ($("li#post" + nlid + " div.nl-field").length<1) {
 		    nlform = new NLForm(document.getElementById("post" + nlid));
 		  }
 		  $(function() {
