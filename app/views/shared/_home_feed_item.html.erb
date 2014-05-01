@@ -1,6 +1,6 @@
 <li id="post<%= home_feed_item.id %>" class="micropost" data-url="<%= home_feed_item.id %>">
   <span class="content" data-url="<%= wrap(home_feed_item.content1) %>">
-    <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>      
+    <%= form_for((@micropost), :method => "post", :html => { :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>      
       <%= f.hidden_field :content, :value => home_feed_item.content %>
       <!-- <%= f.text_area :content1, placeholder: home_feed_item.content1 %> -->
       <span id="selectme<%= home_feed_item.id %>">
