@@ -2,10 +2,10 @@
   alert('errors');
 <% else %>
 	    $('.microposts').prepend("<%= escape_javascript(render :partial => 'shared/feed_item', object: @micropost) %>");
-	    $('li.micropost').each(function() {
+	    $('.micropost').each(function() {
 		  var nlform, nlid;
 		  nlid = $(this).data('url');
-		  if ($("li#post" + nlid + " .nl-field-toggle").length === 0) {
+		  if ($("#post" + nlid + " .nl-field-toggle").length === 0) {
 		    nlform = new NLForm(document.getElementById("post" + nlid));
 		  }
 		  $(function() {
