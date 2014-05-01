@@ -32,7 +32,7 @@ $(document).ready ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
         seen = {}
-        $("li#post" + nlid + " .nl-field").each ->
+        $("li#post" + nlid + " .nl-field-toggle").each ->
           txt = $(this).text()
           if seen[txt]
             $(this).remove()
@@ -68,7 +68,7 @@ $(document).ready ->
             $("i#clicker" + nlid).click ->
               SelectText "selectme" + nlid
           seen = {}
-          $("li#post" + nlid + " .nl-field").each ->
+          $("li#post" + nlid + " .nl-field-toggle").each ->
             txt = $(this).text()
             if seen[txt]
               $(this).remove()
