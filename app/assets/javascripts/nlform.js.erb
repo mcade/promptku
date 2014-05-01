@@ -79,7 +79,6 @@
 		_initEvents : function() {
 			var self = this;
 			this.toggle.addEventListener( 'click', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
-			this.toggle.addEventListener( 'touchstart', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
 
 			if( this.type === 'input' ) {
 				this.getinput.addEventListener( 'keydown', function( ev ) {

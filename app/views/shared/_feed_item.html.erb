@@ -1,4 +1,3 @@
-<% unless feed_item.content2 == "retweet" %>
   <li id="post<%= feed_item.id %>" class="micropost" data-url="<%= feed_item.id %>">
     <span class="content" data-url="<%= wrap(feed_item.content1) %>">
       <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>     
@@ -30,12 +29,6 @@
       </span>
       <!-- share as image -->
       <i class="fa fa-picture-o fa-3x" id="clicker<%= feed_item.id %>"></i>
-      <!-- repost -->
-      <span id="retweet<%= feed_item.id %>">
-        <% unless feed_item.user.id == current_user.id %>
-          <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(feed_item), :method => :post, :remote => true %>
-        <% end %>
-      </span>
       <!-- comment -->
       <span>
         <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, feed_item %>
@@ -53,35 +46,4 @@
                                      :class => 'delete' %>
       <% end %>
     </div>
-
-    <%= javascript_tag do %>
-          var nlform = new NLForm( document.getElementById( 'post<%= feed_item.id %>' ) );
-
-    $(function() {
-      $("i#clicker<%= feed_item.id %>").click(function() {
-        SelectText("selectme<%= feed_item.id %>");
-      });
-    });
-
-    $(function() {
-      $("li#post<%= feed_item.id %> form input").keyup(function() {
-        $("span#author<%= feed_item.id %>").hide();
-        $("span#tags<%= feed_item.id %>").fadeIn();
-        $("div.nl-submit-wrap#submit<%= feed_item.id %>").fadeIn();
-      });
-    });
-    $('#btn<%= feed_item.id %>').click(function( event ) {
-      $("span#author<%= feed_item.id %>").slideDown();
-      $("span#tags<%= feed_item.id %>").slideUp();
-      $('div.nl-submit-wrap#submit<%= feed_item.id %>').fadeOut(1300, function(){
-        $('#post<%= feed_item.id %> a.nl-field-toggle').text("<%= wrap(feed_item.content1) %>");
-        if ($('button.more').length !== 0) {
-          $('li.micropost').last().slideUp('slow', function(){
-            $('li.micropost').last().remove();
-          });
-        }
-      });
-    });
-    <% end %>
   </li>
-<% end %>

@@ -30,12 +30,6 @@
     </span>
     <!-- share as image -->
     <i class="fa fa-picture-o fa-3x" id="clicker<%= home_feed_item.id %>"></i>
-    <!-- repost -->
-    <span id="retweet<%= home_feed_item.id %>">
-      <% unless home_feed_item.user.id == current_user.id %>
-        <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(home_feed_item), :method => :post, :remote => true %>
-      <% end %>
-    </span>
     <!-- comment -->
     <span>
       <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, home_feed_item %>
@@ -53,35 +47,4 @@
                                        :class => 'delete' %>
     <% end %>
   </div>
-
-
-  <%= javascript_tag do %>
-    var nlform = new NLForm( document.getElementById( 'post<%= home_feed_item.id %>' ) );
-
-    $(function() {
-      $("i#clicker<%= home_feed_item.id %>").click(function() {
-        SelectText("selectme<%= home_feed_item.id %>");
-      });
-    });
-
-    $(function() {
-      $("li#post<%= home_feed_item.id %> form input").keyup(function() {
-        $("span#author<%= home_feed_item.id %>").hide();
-        $("span#tags<%= home_feed_item.id %>").fadeIn();
-        $("div.nl-submit-wrap#submit<%= home_feed_item.id %>").fadeIn();
-      });
-    });
-    $('#btn<%= home_feed_item.id %>').click(function( event ) {
-      $("span#author<%= home_feed_item.id %>").slideDown();
-      $("span#tags<%= home_feed_item.id %>").slideUp();
-      $('div.nl-submit-wrap#submit<%= home_feed_item.id %>').fadeOut(1300, function(){
-        $('#post<%= home_feed_item.id %> a.nl-field-toggle').text("<%= wrap(home_feed_item.content1) %>");
-        if ($('button.more').length !== 0) {
-          $('li.micropost').last().slideUp('slow', function(){
-            $('li.micropost').last().remove();
-          });
-        }
-      });
-    });
-  <% end %>
 </li>

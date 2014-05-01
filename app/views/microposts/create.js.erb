@@ -2,6 +2,39 @@
   alert('errors');
 <% else %>
 	    $('.microposts').prepend("<%= escape_javascript(render :partial => 'shared/feed_item', object: @micropost) %>");
+	    $('li.micropost').each(function() {
+		  var nlform, nlid;
+		  nlid = $(this).data('url');
+		  if ($("li#post" + nlid + " .nl-field-toggle").length === 0) {
+		    nlform = new NLForm(document.getElementById("post" + nlid));
+		  }
+		  $(function() {
+		    return $("li#post" + nlid + " form input").keyup(function() {
+		      $("span#author" + nlid).hide();
+		      $("span#tags" + nlid).fadeIn();
+		      return $("div.nl-submit-wrap#submit" + nlid).fadeIn();
+		    });
+		  });
+		  $("#btn" + nlid).click(function(event) {
+		    var kutext;
+		    kutext = $("li#post" + nlid + " span.content").data('url');
+		    $("span#author" + nlid).slideDown();
+		    $("span#tags" + nlid).slideUp();
+		    return $("div.nl-submit-wrap#submit" + nlid).fadeOut(1300, function() {
+		      $("#post" + nlid + " a.nl-field-toggle").text(kutext);
+		      if ($("button.more").length !== 0) {
+		        return $("li.micropost").last().slideUp("slow", function() {
+		          return $("li.micropost").last().remove();
+		        });
+		      }
+		    });
+		  });
+		  $(function() {
+		    return $("i#clicker" + nlid).click(function() {
+		      return SelectText("selectme" + nlid);
+		    });
+		  });
+		});
 	    $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
 	    $('.microposts').children(':first').hide().slideDown();
 	    $('div.field textarea#micropost_content').val("");

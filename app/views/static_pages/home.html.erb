@@ -10,9 +10,19 @@
       <section>
         <%= render 'shared/micropost_form' %>
       </section>
+      <section class="picks">
+        <h3>Editor's Picks</h3>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=I%27ll+know+I%27ve+made+it&show=matching_prompts">I'll know I've made it...</a>
+        <br><br>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+I+only+had+24+hours+to+live%2C+I+would&show=matching_prompts">If I only had 24 hours to live...</a>
+        <br><br>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+I+could+be+any+superhero&show=matching_prompts">If I could be any superhero...</a>
+        <br><br>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+I+could+throw+caution+to+the+winds+and+really+risk+it+all%2C+I+would&show=matching_prompts">If I could risk it all...</a>
+      </section>
     </aside>
     <div class="span8">
-      <h3>promptku feed</h3>
+      <h3>My Feed</h3>
       <%= render 'shared/home_feed' %>
       <% unless (params[:page].present? || @feed_items.count <10) %>
         <button class = "more btn btn-large btn-info">Show More</button>
@@ -25,12 +35,48 @@
     <h1 class="welcome">Welcome to <span class="prompt">prompt<span class="kulogo">ku</span></span></h1>
 
     <h2 class="example">
-      Finish each other's <span contenteditable="true">sandwiches.</span>
+      Finish each other's <span id="typer" data-typer-targets="sandwiches.,sentences.,thoughts."></span>
+      <script>
+        $(function () {
+          $('[data-typer-targets]').typer();
+        });
+      </script>
     </h2>
 
     <%= link_to "Sign up now!", signup_path,
                                 class: "btn btn-large btn-primary" %>
   </div>
+  <div id="promptsample"></div>
+  <script>
+        setTimeout(function (){
+        $('#promptsample').hide(function(){
+          $('#promptsample').fadeIn(500).text('If I only had 24 hours to live...');
+        });
+    }, 10000); 
 
+    setTimeout(function (){
+        $('#promptsample').fadeOut(1500, function() {
+            $(this).text("I'll know I've made it when...").fadeIn(500);
+        });
+    }, 14000);
+
+    setTimeout(function (){
+        $('#promptsample').fadeOut(1500, function() {
+            $(this).text("If I could risk it all...").fadeIn(500);
+        });
+    }, 19000);
+
+    setTimeout(function (){
+        $('#promptsample').fadeOut(1500, function() {
+            $(this).text('The next big thing is...').fadeIn(500);
+        });
+    }, 24000);
+
+    setTimeout(function (){
+        $('#promptsample').fadeOut(1500, function() {
+            $(this).text('promptku!').fadeIn(400);
+        });
+    }, 29000);
+  </script>
   <div class="welcomeface"><%= image_tag("promptkuface.svg", alt: "Promptku Smiley") %></div>
 <% end %>

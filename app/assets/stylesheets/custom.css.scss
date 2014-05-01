@@ -525,7 +525,43 @@ li.errors {
 div.help {
   width: 60%;
   margin: 0 auto;
+  font-size: 1.1em;
   h2 {
     color: #e6e6e6;
+  }
+}
+
+div#promptsample {
+  position: absolute;
+  font-size: 1.5em;
+}
+
+.help p a {
+  color: lightblue;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+
+p.iconhelp {
+  border-top: dashed 1px #b94a48;
+}
+
+.picks {
+  border: dashed 1px #b94a48;
+  padding-left: 5px;
+  font-size: 1.5em;
+  h3 {
+    text-align: center;
+    color: rgba(0,0,0,0.3);
+    padding-bottom: 5px;
+  }
+  a {
+    color: #f0f0f0;
+    text-decoration: none;
+    &:hover {
+      color: lightblue;
+    }
   }
 }

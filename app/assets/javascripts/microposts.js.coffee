@@ -39,3 +39,25 @@ $(document).ready ->
 
   $('.more').click ->
     $(".microposts").infinitescroll('retrieve');
+$(document).ready ->
+  $('li.micropost').each ->
+          nlid = $(this).data('url')
+          nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
+          $ ->
+            $("li#post" + nlid + " form input").keyup ->
+              $("span#author" + nlid).hide()
+              $("span#tags" + nlid).fadeIn()
+              $("div.nl-submit-wrap#submit" + nlid).fadeIn()
+          $("#btn" + nlid).click (event) ->
+            kutext = $("li#post" + nlid + " span.content").data('url')
+            $("span#author" + nlid).slideDown()
+            $("span#tags" + nlid).slideUp()
+            $("div.nl-submit-wrap#submit" + nlid).fadeOut 1300, ->
+              $("#post" + nlid + " a.nl-field-toggle").text kutext
+              if $("button.more").length isnt 0
+                $("li.micropost").last().slideUp "slow", ->
+                  $("li.micropost").last().remove()
+          $ ->
+            $("i#clicker" + nlid).click ->
+              SelectText "selectme" + nlid
+          return

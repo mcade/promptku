@@ -34,13 +34,13 @@ class Micropost < ActiveRecord::Base
     #find_with_reputation(:votes, :all, order: 'votes desc')
   end
   def self.popularToday
-    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["DATE(microposts.created_at) = DATE(NOW())"]})
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["microposts.created_at > ?", 24.hours.ago]})
   end
   def self.popularWeekly
-    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["EXTRACT(WEEK FROM microposts.created_at) = EXTRACT(WEEK FROM now())"]})
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["microposts.created_at > ?", 168.hours.ago]})
   end
   def self.popularMonthly
-    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["EXTRACT(MONTH FROM microposts.created_at) = EXTRACT(MONTH FROM now())"]})
+    reorder('votes desc').order('created_at DESC').find_with_reputation(:votes, :all, { :conditions => ["microposts.created_at > ?", 672.hours.ago]})
   end
 
 

@@ -28,12 +28,6 @@
     </span>
     <!-- share as image -->
     <i class="fa fa-picture-o fa-3x" id="clicker<%= micropost.id %>" data-url="clicker<%= micropost.id %>"></i>
-    <!-- repost -->
-    <span id="retweet<%= micropost.id %>">
-      <% unless micropost.user.id == current_user.id %>
-        <%= link_to '<i class="fa fa-retweet fa-3x"></i>'.html_safe, retweet_micropost_path(micropost), :method => :post, :remote => true %>
-      <% end %>
-    </span>
     <!-- comment -->
     <span>
       <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, micropost %>
@@ -51,35 +45,4 @@
                                      :class => 'delete'%>
     <% end %>
   </div>
-
-  <%= javascript_tag do %>
-    window.nlform = new NLForm( document.getElementById( 'post<%= micropost.id %>' ) )
-
-  $(function() {
-    $("i#clicker<%= micropost.id %>").click(function() {
-      SelectText("selectme<%= micropost.id %>");
-    });
-  });
-
-  $(function() {
-    $("li#post<%= micropost.id %> form input").keyup(function() {
-      $("span#author<%= micropost.id %>").hide();
-      $("span#tags<%= micropost.id %>").fadeIn();
-      $("div.nl-submit-wrap#submit<%= micropost.id %>").fadeIn();
-    });
-  });
-
-  $('#btn<%= micropost.id %>').click(function( event ) {
-    $("span#author<%= micropost.id %>").slideDown();
-    $("span#tags<%= micropost.id %>").slideUp();
-    $('div.nl-submit-wrap#submit<%= micropost.id %>').fadeOut(1300, function(){
-      $('#post<%= micropost.id %> a.nl-field-toggle').text("<%= wrap(micropost.content1) %>");
-      if ($('button.more').length !== 0) {
-        $('li.micropost').last().slideUp('slow', function(){
-          $('li.micropost').last().remove();
-        });
-      }
-    });
-  });
-  <% end %>
 </li>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     	if @user.save
         sign_in @user
     		flash[:success] = "Welcome to Promptku!"
-      		redirect_to root_url
+      		redirect_to help_url
     	else
     		render 'new'
   		end

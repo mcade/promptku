@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="promptkuface1.svg">
+   sodipodi:docname="promptkuface.svg">
   <defs
      id="defs4">
     <clipPath
@@ -77,17 +77,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.01"
-     inkscape:cx="67.171423"
-     inkscape:cy="102.44967"
+     inkscape:zoom="1.4283557"
+     inkscape:cx="77.742516"
+     inkscape:cy="73.116058"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer3"
      showgrid="false"
-     inkscape:window-width="1238"
-     inkscape:window-height="628"
-     inkscape:window-x="15"
-     inkscape:window-y="27"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid3777"
@@ -104,7 +104,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -133,7 +133,7 @@
      inkscape:label="Eyes and Mouth">
     <path
        sodipodi:type="arc"
-       style="opacity:0.65044250000000003;color:#000000;fill:none;stroke:#000000;stroke-width:2.941;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="opacity:0.88053097;color:#000000;fill:none;stroke:#595a00;stroke-width:2.94099999999999980;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="path3781"
        sodipodi:cx="82.5"
        sodipodi:cy="82.5"
@@ -145,7 +145,7 @@
     <path
        transform="translate(61.502146,0.57939904)"
        sodipodi:type="arc"
-       style="opacity:0.65044250000000003;color:#000000;fill:none;stroke:#000000;stroke-width:2.941;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="opacity:0.88053097;color:#000000;fill:none;stroke:#595a00;stroke-width:2.94099999999999980;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="path3781-1"
        sodipodi:cx="82.5"
        sodipodi:cy="82.5"
@@ -155,7 +155,7 @@
        clip-path="url(#clipPath3835)" />
     <path
        sodipodi:type="arc"
-       style="opacity:0.65044250000000003;color:#000000;fill:none;stroke:#000000;stroke-width:2.941;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="opacity:0.88053097;color:#000000;fill:none;stroke:#595a00;stroke-width:2.94099999999999980;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="path3843"
        sodipodi:cx="105"
        sodipodi:cy="140"

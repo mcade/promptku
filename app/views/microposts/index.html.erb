@@ -13,7 +13,7 @@
 		    <% else %>
 		    	<button class="btn btn-info" type="submit" name="show" value="daily">Today</button>
 		    <% end %>
-		    <% unless params["show"] == "daily" || params["show"] == "monthly" || params[:query].present? %>
+		    <% unless params["show"] == "daily" || params["show"] == "monthly" || params[:query].present? || params["show"] == "matching_prompts" %>
 		    	<button class="btn btn-info selected" type="submit" name="show" value="weekly">This week</button>
 		    <% else %>
 		    	<button class="btn btn-info" type="submit" name="show" value="weekly">This week</button>
@@ -39,11 +39,11 @@
 </div>
 <div id="tag_cloud">
 	<% if params["show"] == "daily" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.day.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 24.hours.ago ) %>
 	<% elsif params["show"] == "monthly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.month.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 672.hours.ago ) %>
 	<% else %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 1.week.ago ) %>
+		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 168.hours.ago ) %>
 	<% end %>
 	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
 		<%= link_to tag.name, tag_path(tag.name), class: css_class%>

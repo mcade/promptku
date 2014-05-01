@@ -1,19 +1,28 @@
 <% provide(:title, 'Help') %>
-<h1>Help</h1>
+<h1>How-to</h1>
 <div class="help">
 <h2>
-  Learn to promptku! It's easy.
+  p r o m p t k u
 </h2>
 <p>
-	To make your own promptku visit the homepage and create a prompt (the part that will be uneditable) and a ku (the part that will be editable).
+	<b>A good promptku is an open-ended statement or question that inspires others to consider what their own answer might be.</b> E.g., "If I ruled the world for a day..."
 </p>
 <p>
-	You can also visit the trending page in order to find new prompts to tailor with your own ku.
+	To make a promptku visit the <%= link_to "homepage", root_path %> and create a prompt (the part that will be uneditable) and a ku (the part that will be editable).
 </p>
 <p>
+	You can also visit the <%= link_to "trending", microposts_path %> page in order to find popular promptkus.<br>
+	<% if signed_in? %>
+		Change your profile picture by going to your <%= link_to "account settings", edit_user_path(current_user) %> page.<br>
+	<% else %>
+		Change your profile picture by going to your account settings page.<br>
+	<% end %>
+	Find people to follow by visiting the <%= link_to "users", users_path %> page.
+</p>
+<br>
+<p class="iconhelp">
 	The <i class="fa fa-heart-o"></i> icon next to a promptku will allow you to curate your favorite promptkus.<br>
-	The <i class="fa fa-picture-o"></i> will allow you to share a promptku as an image on your favorite social network.<br>
-	The <i class="fa fa-retweet"></i> icon will allow you to repost a promptku as your own.<br>
+	The <i class="fa fa-picture-o"></i> icon will allow you to share a promptku as an image on social networks.<br>
 	The <i class="fa fa-comment"></i> icon will allow you to post and read comments for each promptku.
 </p>
 </div>
