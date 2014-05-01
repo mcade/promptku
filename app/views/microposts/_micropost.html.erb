@@ -1,6 +1,6 @@
 <li class="micropost" id="post<%= micropost.id %>" data-url="<%= micropost.id %>">
   <span class="content" data-url="<%= wrap(micropost.content1) %>">
-    <%= form_for((@micropost), :html => { :class => "nl-form" }, :remote => true, :authenticity_token => true) do |f| %>       
+    <%= form_for((@micropost), :html => { :id => "nl-form", :class => "nl-form" }, :remote => true, :authenticity_token => true) do |f| %>       
       <%= f.hidden_field :content, :value => micropost.content %>
       <span id="selectme<%= micropost.id %>">
         <%= link_to "#{wrap(micropost.content)}", microposts_path(show: "matching_prompts", content: micropost.content), {:class => 'prompt'} %>
