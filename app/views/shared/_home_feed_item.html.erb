@@ -2,7 +2,7 @@
   <script>
     setTimeout(function (){
       if ($("li#post<%= home_feed_item.id %> div.nl-field").length === 1) {
-        $("span#vote<%= home_feed_item.id %>").prepend("<p id='check<%= home_feed_item.id %>'></p>");
+        $("span#vote<%= home_feed_item.id %>").prepend("<p id='check<%= home_feed_item.id %>' onclick=''></p>");
       }
     }, 100); 
   </script>
