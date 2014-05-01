@@ -1,4 +1,4 @@
-  <li id="post<%= feed_item.id %>" class="micropost" data-url="<%= feed_item.id %>" onclick="">
+  <li id="post<%= feed_item.id %>" class="micropost" data-url="<%= feed_item.id %>">
     <span class="content" data-url="<%= wrap(feed_item.content1) %>">
       <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>     
         <%= f.hidden_field :content, :value => feed_item.content %>

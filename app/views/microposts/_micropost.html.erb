@@ -1,4 +1,4 @@
-<li class="micropost" id="post<%= micropost.id %>" data-url="<%= micropost.id %>" onclick="">
+<li class="micropost" id="post<%= micropost.id %>" data-url="<%= micropost.id %>">
   <span class="content" data-url="<%= wrap(micropost.content1) %>">
     <%= form_for((@micropost), :html => { :id => "nl-form", :class => "nl-form" }, :remote => true, :authenticity_token => true) do |f| %>       
       <%= f.hidden_field :content, :value => micropost.content %>
