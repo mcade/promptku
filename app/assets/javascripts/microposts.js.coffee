@@ -33,7 +33,7 @@ $(document).ready ->
             $("i#clicker" + nlid).click ->
               SelectText "selectme" + nlid
           return
-        ), 0
+        ), 1000
 
 
 
@@ -64,4 +64,4 @@ $(document).ready ->
               $("i#clicker" + nlid).click ->
                 SelectText "selectme" + nlid
             return
-          ), 0
+          ), 1000

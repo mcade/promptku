@@ -36,7 +36,7 @@
 			    });
 			  });
 			});
-		  }, 0)
+		  }, 1000)
 	    $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
 	    $('.microposts').children(':first').hide().slideDown();
 	    $('div.field textarea#micropost_content').val("");
