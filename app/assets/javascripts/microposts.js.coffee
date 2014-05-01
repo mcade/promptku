@@ -68,10 +68,10 @@ $(document).ready ->
             $("i#clicker" + nlid).click ->
               SelectText "selectme" + nlid
           seen = {}
-            $("li#post" + nlid + " .nl-field").each ->
-              txt = $(this).text()
-              if seen[txt]
-                $(this).remove()
-              else
-                seen[txt] = true
+          $("li#post" + nlid + " .nl-field").each ->
+            txt = $(this).text()
+            if seen[txt]
+              $(this).remove()
+            else
+              seen[txt] = true
           return
