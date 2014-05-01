@@ -4,7 +4,7 @@
       if ($("li#post<%= home_feed_item.id %> div.nl-field").length === 1) {
         $("span#vote<%= home_feed_item.id %>").prepend("<p id='check<%= home_feed_item.id %>'></p>");
       }
-    }, 0); 
+    }, 100); 
   </script>
   <span class="content" data-url="<%= wrap(home_feed_item.content1) %>">
     <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>      
