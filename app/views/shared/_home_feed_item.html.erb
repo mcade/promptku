@@ -1,4 +1,4 @@
-<li id="postp<%= home_feed_item.id %>" class="micropost" data-url="p<%= home_feed_item.id %>">
+<li id="post<%= home_feed_item.id %>" class="micropost" data-url="<%= home_feed_item.id %>" onclick="">
   <span class="content" data-url="<%= wrap(home_feed_item.content1) %>">
     <%= form_for((@micropost), :method => "post", :html => { :id => "nl-form", :class => "nl-form" }, :url => microposts_path, :remote => true, :authenticity_token => true) do |f| %>      
       <%= f.hidden_field :content, :value => home_feed_item.content %>
@@ -8,9 +8,9 @@
         <input type="text" value="" placeholder="<%= wrap(home_feed_item.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
         <div class="nl-overlay"></div>
       </span><br>
-      <span class="user" id="authorp<%= home_feed_item.id %>">-<%= link_to home_feed_item.user.name, home_feed_item.user %></span>
-      <div class="nl-submit-wrap" id="submitp<%= home_feed_item.id %>">
-        <span id="tagsp<%= home_feed_item.id %>" class="formtags"><%= f.text_field :tag_list, :value => home_feed_item.tag_list, placeholder: "#tags" %></span><br>
+      <span class="user" id="author<%= home_feed_item.id %>">-<%= link_to home_feed_item.user.name, home_feed_item.user %></span>
+      <div class="nl-submit-wrap" id="submit<%= home_feed_item.id %>">
+        <span id="tags<%= home_feed_item.id %>" class="formtags"><%= f.text_field :tag_list, :value => home_feed_item.tag_list, placeholder: "#tags" %></span><br>
         <button id="btn<%= home_feed_item.id %>" class="nl-submit" type="submit" name="commit" data-disable-with="Submitting">Post</button>
       </div>
     <% end %>
