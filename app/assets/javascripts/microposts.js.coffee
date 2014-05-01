@@ -11,9 +11,9 @@ $(document).ready ->
     behavior: 'twitter'
     animate: true
   , (newElements) ->
-      $('.micropost').each ->
+      $('li.micropost').each ->
         nlid = $(this).data('url')
-        nlform = new NLForm(document.getElementById("post" + nlid))  if $("#post" + nlid + " .nl-field-toggle").length is 0
+        nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
         $ ->
           $("li#post" + nlid + " form input").keyup ->
             $("span#author" + nlid).hide()
@@ -40,9 +40,9 @@ $(document).ready ->
   $('.more').click ->
     $(".microposts").infinitescroll('retrieve');
 $(document).ready ->
-  $('.micropost').each ->
+  $('li.micropost').each ->
           nlid = $(this).data('url')
-          nlform = new NLForm(document.getElementById("post" + nlid))  if $("#post" + nlid + " .nl-field-toggle").length is 0
+          nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
           $ ->
             $("li#post" + nlid + " form input").keyup ->
               $("span#author" + nlid).hide()
