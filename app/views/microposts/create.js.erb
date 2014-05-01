@@ -5,7 +5,7 @@
 	    $('li.micropost').each(function() {
 		  var nlform, nlid;
 		  nlid = $(this).data("url");
-		  if ($("p#check" + nlid).length === 0) {
+		  if ($("li#post" + nlid + " .nl-field-toggle").length === 0) {
 		    nlform = new NLForm(document.getElementById("post" + nlid));
 		  }
 		  $(function() {
