@@ -38,7 +38,6 @@ $(document).ready ->
             $(this).remove()
           else
             seen[txt] = true
-        $('li.micropost').attr('class', 'micropos');
         return
 
 
@@ -68,5 +67,4 @@ $(document).ready ->
           $ ->
             $("i#clicker" + nlid).click ->
               SelectText "selectme" + nlid
-          $("li#post" + nlid + " div.nl-field:nth-child(2)").remove() if $("li#post" + nlid + " .nl-field-toggle").length is 2
           return
