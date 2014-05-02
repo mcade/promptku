@@ -18,13 +18,15 @@
 
 	NLForm.prototype = {
 		_init : function() {
-			var self = this;
-			Array.prototype.slice.call( this.el.querySelectorAll( 'input#micropost_content1' ) ).forEach( function( el, i ) {
-				self.fldOpen++;
-				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
-			} );
-			this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
-			this.overlay.addEventListener( 'click', function(ev) { self._closeFlds(); } );
+			if (typeof self === 'undefined') {
+				var self = this;
+				Array.prototype.slice.call( this.el.querySelectorAll( 'input#micropost_content1' ) ).forEach( function( el, i ) {
+					self.fldOpen++;
+					self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
+				} );
+				this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
+				this.overlay.addEventListener( 'click', function(ev) { self._closeFlds(); } );
+			}
 		},
 		_closeFlds : function() {
 			if( this.fldOpen !== -1 ) {

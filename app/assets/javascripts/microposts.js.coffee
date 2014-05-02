@@ -13,7 +13,7 @@ $(document).ready ->
   , (newElements) ->
       $( "#infscr-loading ~ li" ).each ->
         nlid = $(this).data('url')
-        nlform = new NLForm(document.getElementById("post" + nlid))
+        nlform = new NLForm(document.getElementById "post" + nlid )  if $("li#post" + nlid + " .nl-field-toggle").length is 0
         $ ->
           $("li#post" + nlid + " form input").keyup ->
             $("span#author" + nlid).hide()
@@ -36,7 +36,6 @@ $(document).ready ->
           txt = $(this).text()
           if seen[txt]
             $(this).remove()
-            $("li#post" + nlid + " .prompt + div").remove()
           else
             seen[txt] = true
           return
