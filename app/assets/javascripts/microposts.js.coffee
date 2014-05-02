@@ -32,7 +32,13 @@ $(document).ready ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
         seen = {}
-        $("li#post" + nlid + " .nl-field + div").remove()
+        $("li#post" + nlid + " .nl-field").each ->
+          txt = $(this).text()
+          if seen[txt]
+            $("li#post" + nlid + " .prompt + div").remove()
+          else
+            seen[txt] = true
+          return
         return
 
 
