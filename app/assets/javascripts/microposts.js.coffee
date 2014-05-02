@@ -11,7 +11,7 @@ $(document).ready ->
     behavior: 'twitter'
     animate: true
   , (newElements) ->
-      $('li.micropost').each ->
+      $( "#infscr-loading ~ li" ).each ->
         nlid = $(this).data('url')
         nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
         $ ->
