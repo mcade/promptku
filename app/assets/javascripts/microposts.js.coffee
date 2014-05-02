@@ -31,13 +31,9 @@ $(document).ready ->
         $ ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
-        seen = {}
-        $("li#post" + nlid + " .nl-field-toggle").each ->
-          txt = $(this).text()
-          if seen[txt]
-            $(this).remove()
-          else
-            seen[txt] = true
+
+        $("li#post" + nlid + " div.nl-field").remove() if $("li#post" + nlid + " .nl-field-toggle").length is 0
+
         return
 
 
