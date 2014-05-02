@@ -32,7 +32,7 @@ $(document).ready ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
 
-        $("li#post" + nlid + " div.nl-field").remove()
+        $("li#post" + nlid + " div.nl-field:nth-child(2)").remove() if $("li#post" + nlid + " .nl-field-toggle").length is 2
 
         return
 
@@ -63,11 +63,5 @@ $(document).ready ->
           $ ->
             $("i#clicker" + nlid).click ->
               SelectText "selectme" + nlid
-          seen = {}
-          $("li#post" + nlid + " .nl-field-toggle").each ->
-            txt = $(this).text()
-            if seen[txt]
-              $(this).remove()
-            else
-              seen[txt] = true
+          $("li#post" + nlid + " div.nl-field:nth-child(2)").remove() if $("li#post" + nlid + " .nl-field-toggle").length is 2
           return
