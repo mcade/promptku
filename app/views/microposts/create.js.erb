@@ -43,11 +43,4 @@
         		seen[txt] = true;
 		  });
 		});
-	    $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
-	    $('.microposts').children(':first').hide().slideDown();
-	    $('div.field textarea#micropost_content').val("");
-	    $('div.field textarea#micropost_content1').val("");
-	    $('div.field input#micropost_tag_list').val("");
-	    $('.nl-ti-text ul li.nl-ti-input input').val("");
-	    $('span.noposts').fadeOut("slow");
 <% end %>
