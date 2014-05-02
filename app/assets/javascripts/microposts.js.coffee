@@ -13,7 +13,7 @@ $(document).ready ->
   , (newElements) ->
       $('li.micropost').each ->
         nlid = $(this).data('url')
-        nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length = 0
+        nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
         $ ->
           $("li#post" + nlid + " form input").keyup ->
             $("span#author" + nlid).hide()
@@ -31,6 +31,7 @@ $(document).ready ->
         $ ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
+
         return
 
 
@@ -42,7 +43,7 @@ $(document).ready ->
 $(document).ready ->
   $('li.micropost').each ->
           nlid = $(this).data('url')
-          nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length = 0
+          nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
           $ ->
             $("li#post" + nlid + " form input").keyup ->
               $("span#author" + nlid).hide()
