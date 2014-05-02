@@ -13,7 +13,11 @@ $(document).ready ->
   , (newElements) ->
       $('li.micropost').each ->
         nlid = $(this).data('url')
-        nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
+        if document.getElementById("nlfield" + nlid)
+          blah = 1
+        else
+          nlform = new NLForm(document.getElementById("post" + nlid))
+          $("li#post" + nlid + " .nl-field").attr "id", "nlfield" + nlid
         $ ->
           $("li#post" + nlid + " form input").keyup ->
             $("span#author" + nlid).hide()
@@ -44,6 +48,7 @@ $(document).ready ->
   $('li.micropost').each ->
           nlid = $(this).data('url')
           nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
+          $("li#post" + nlid + " .nl-field").attr "id", "nlfield" + nlid
           $ ->
             $("li#post" + nlid + " form input").keyup ->
               $("span#author" + nlid).hide()
