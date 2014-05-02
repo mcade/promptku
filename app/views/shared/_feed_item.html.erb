@@ -4,7 +4,7 @@
         <%= f.hidden_field :content, :value => feed_item.content %>
         <span id="selectme<%= feed_item.id %>">
           <%= link_to "#{wrap(feed_item.content)}", microposts_path(show: "matching_prompts", content: feed_item.content), {:class => 'prompt'} %>
-          <input type="text" value="" placeholder="<%= wrap(feed_item.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+          <input type="text" value="" placeholder="<%= wrap(feed_item.content1) %>" class="micropost_content1" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
           <div class="nl-overlay"></div>
         </span><br>
         <span class="user" id="author<%= feed_item.id %>">-<%= link_to feed_item.user.name, feed_item.user %></span>

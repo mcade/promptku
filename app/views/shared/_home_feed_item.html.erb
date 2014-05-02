@@ -5,7 +5,7 @@
       <!-- <%= f.text_area :content1, placeholder: home_feed_item.content1 %> -->
       <span id="selectme<%= home_feed_item.id %>">
         <%= link_to "#{wrap(home_feed_item.content)}", microposts_path(show: "matching_prompts", content: home_feed_item.content), {:class => 'prompt'} %>
-        <input type="text" value="" placeholder="<%= wrap(home_feed_item.content1) %>" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+        <input type="text" value="" placeholder="<%= wrap(home_feed_item.content1) %>" class="micropost_content1" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
         <div class="nl-overlay"></div>
       </span><br>
       <span class="user" id="author<%= home_feed_item.id %>">-<%= link_to home_feed_item.user.name, home_feed_item.user %></span>
