@@ -17,8 +17,8 @@
 	}
 
 	NLForm.prototype = {
-		_init : function() {
-			if (typeof self === 'undefined') {
+		if (typeof self === 'undefined') {
+			_init : function() {
 				var self = this;
 				Array.prototype.slice.call( this.el.querySelectorAll( 'input#micropost_content1' ) ).forEach( function( el, i ) {
 					self.fldOpen++;
@@ -26,8 +26,8 @@
 				} );
 				this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
 				this.overlay.addEventListener( 'click', function(ev) { self._closeFlds(); } );
-			}
-		},
+			},
+		}
 		_closeFlds : function() {
 			if( this.fldOpen !== -1 ) {
 				this.fields[ this.fldOpen ].close();
