@@ -32,7 +32,7 @@ $(document).ready ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
 
-        $("li#post" + nlid + " div.nl-field").remove() if $("li#post" + nlid + " .nl-field-toggle").length is 0
+        $("li#post" + nlid + " div.nl-field").remove()
 
         return
 

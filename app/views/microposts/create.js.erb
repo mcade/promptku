@@ -5,9 +5,9 @@
 	    $('li.micropost').each(function() {
 		  var nlform, nlid;
 		  nlid = $(this).data("url");
-
-		  nlform = new NLForm(document.getElementById("post" + nlid));
-
+		  if ($("li#post" + nlid + " .nl-field-toggle").length === 0) {
+		    nlform = new NLForm(document.getElementById("post" + nlid));
+		  }
 		  $(function() {
 		    return $("li#post" + nlid + " form input").keyup(function() {
 		      $("span#author" + nlid).hide();
@@ -35,7 +35,7 @@
 		    });
 		  });
 		  var seen = {};
-		  $("li#post" + nlid + " div.nl-field").each(function() {
+		  $("li#post" + nlid + " .nl-field-toggle").each(function() {
     		var txt = $(this).text();
     		if (seen[txt])
         		$(this).remove();
