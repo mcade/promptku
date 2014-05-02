@@ -38,6 +38,7 @@ $(document).ready ->
             $(this).remove()
           else
             seen[txt] = true
+        $('li.micropost').attr('class', 'micropos');
         return
 
 
