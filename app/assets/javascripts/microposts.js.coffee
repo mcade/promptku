@@ -35,6 +35,7 @@ $(document).ready ->
         $("li#post" + nlid + " .nl-field").each ->
           txt = $(this).text()
           if seen[txt]
+            $(this).remove()
             $("li#post" + nlid + " .prompt + div").remove()
           else
             seen[txt] = true
