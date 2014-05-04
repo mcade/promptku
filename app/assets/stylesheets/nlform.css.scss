@@ -318,7 +318,7 @@ li #micropost_tag_list:-ms-input-placeholder {
   	.nl-field.nl-field-open ul {
 		position: fixed;
 		left: 0;
-		top: 60%;
+		top: 30%;
 	}	
 	.microposts li {
     	-webkit-transform: translateZ(0);
@@ -428,7 +428,8 @@ li #micropost_tag_list:-ms-input-placeholder {
  		}
 	}
 	.nl-field.nl-field-open ul {
-		left: -25px;
+		width: 30%;
+		left: 0;
 	}
 	h1.trending {
 		margin-bottom: 5px;
