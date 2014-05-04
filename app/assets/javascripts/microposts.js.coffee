@@ -9,11 +9,10 @@ $(document).ready ->
     nextSelector: "div.pagination a[rel=next]" # selector for the NEXT link (to page 2)
     itemSelector: ".microposts li.micropost" # selector for all items you'll retrieve
     behavior: 'twitter'
-    animate: true
   , (newElements) ->
       $( "#infscr-loading ~ li" ).each ->
         nlid = $(this).data('url')
-        nlform = new NLForm(document.getElementById "post" + nlid ) if $("li#post" + nlid + " .nl-field-toggle").length is 0
+        nlform = new NLForm(document.getElementById "post" + nlid )
         $ ->
           $("li#post" + nlid + " form input").keyup ->
             $("span#author" + nlid).hide()
@@ -31,14 +30,6 @@ $(document).ready ->
         $ ->
           $("i#clicker" + nlid).click ->
             SelectText "selectme" + nlid
-        seen = {}
-        $("li#post" + nlid + " .nl-field").each ->
-          txt = $(this).text()
-          if seen[txt]
-            $(this).remove()
-          else
-            seen[txt] = true
-          return
         return
 
 

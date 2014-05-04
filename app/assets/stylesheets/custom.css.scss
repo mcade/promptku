@@ -1,7 +1,10 @@
 
 
 @import "bootstrap";
-
+body {
+  padding-top: 60px;
+}
+@import "bootstrap-responsive";
 
 /* mixins, variables, etc. */
 
@@ -17,10 +20,6 @@ $grayMediumLight: #eaeaea;
 html {
   overflow-y: scroll;
   overflow-x: hidden;
-}
-
-body {
-  padding-top: 60px;
 }
 
 section {
@@ -372,7 +371,7 @@ span.usercomment {
 
 .formtags {
   display: none;
-  font-size: .3em;
+  font-size: .5em;
   input {
     width: 50%;
   }
@@ -425,8 +424,9 @@ button.more {
   }
 }
 
-div.trendoptions button {
+.trendoptions button {
   margin-right: 0.3em;
+  display: inline-block;
   background: rgba(212, 205, 240, 0.4);
   &:hover {
     background: rgba(212, 205, 240, 0.5);
@@ -437,6 +437,10 @@ div.trendoptions button {
   &.selected {
     background: rgba(90, 90, 90, 0.2);
   }
+}
+.trendoptions {
+  width: 300px;
+  margin: 0 auto;
 }
 
 div#infscr-loading {
@@ -564,4 +568,23 @@ p.iconhelp {
       color: lightblue;
     }
   }
+}
+
+.new_micropost {
+  display: none;
+}
+
+.newpromptbtn {
+  background: rgba(212, 205, 178, 0.4);
+  width: 100%;
+  &:hover {
+    background: rgba(212, 205, 178, 0.5);
+  }
+  i {
+    color: lightblue;
+  }
+}
+
+#user_image {
+  border: none;
 }

@@ -12,13 +12,13 @@
       </section>
       <section class="picks">
         <h3>Editor's Picks</h3>
-        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=I%27ll+know+I%27ve+made+it&show=matching_prompts">I'll know I've made it...</a>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+money+wasn%27t+necessary+for+survival&show=matching_prompts">If money wasn't necessary for survival...</a>
         <br><br>
-        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+I+only+had+24+hours+to+live%2C+I+would&show=matching_prompts">If I only had 24 hours to live...</a>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=I%27ll+know+I%27ve+made+it&show=matching_prompts">I'll know I've made it...</a>
         <br><br>
         <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+I+could+be+any+superhero&show=matching_prompts">If I could be any superhero...</a>
         <br><br>
-        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=If+I+could+throw+caution+to+the+winds+and+really+risk+it+all%2C+I+would&show=matching_prompts">If I could risk it all...</a>
+        <a href="https://desolate-savannah-3068.herokuapp.com/microposts?content=There%27s+nothing+like+a+good&show=matching_prompts">There's nothing like a good...</a>
       </section>
     </aside>
     <div class="span8">
@@ -50,33 +50,33 @@
   <script>
         setTimeout(function (){
         $('#promptsample').hide(function(){
-          $('#promptsample').fadeIn(500).text('If I only had 24 hours to live...');
+          $('#promptsample').fadeIn(500).text("If money wasn't necessary for survival...");
         });
-    }, 10000); 
+    }, 8500); 
 
     setTimeout(function (){
-        $('#promptsample').fadeOut(1500, function() {
+        $('#promptsample').fadeOut(600, function() {
             $(this).text("I'll know I've made it when...").fadeIn(500);
         });
-    }, 14000);
+    }, 12000);
 
     setTimeout(function (){
-        $('#promptsample').fadeOut(1500, function() {
+        $('#promptsample').fadeOut(600, function() {
             $(this).text("If I could risk it all...").fadeIn(500);
+        });
+    }, 15400);
+
+    setTimeout(function (){
+        $('#promptsample').fadeOut(600, function() {
+            $(this).text('The next big thing is...').fadeIn(500);
         });
     }, 19000);
 
     setTimeout(function (){
-        $('#promptsample').fadeOut(1500, function() {
-            $(this).text('The next big thing is...').fadeIn(500);
-        });
-    }, 24000);
-
-    setTimeout(function (){
-        $('#promptsample').fadeOut(1500, function() {
+        $('#promptsample').fadeOut(600, function() {
             $(this).text('promptku!').fadeIn(400);
         });
-    }, 29000);
+    }, 22000);
   </script>
   <div class="welcomeface"><%= image_tag("promptkuface.svg", alt: "Promptku Smiley") %></div>
 <% end %>

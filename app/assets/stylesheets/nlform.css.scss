@@ -293,10 +293,144 @@ li #micropost_tag_list:-ms-input-placeholder {
 	.nl-form {
 		font-size: 3em;
 	}
+	.hero-unit {
+		padding: 2em;
+		margin-bottom: 15px;
+	}
+	span#typer {
+		display: block;
+		padding-top: 5px;
+		border: none;
+	}
+	div.welcomeface img {
+  		padding-top: 10px;
+	}
+	#logo {
+		padding-top: 0;
+	}
+	div.help {
+  		width: 100%;
+  		font-size: 1em;
+	}
+	#tag_cloud {
+  		width: 100%;
+  	}
+  	.nl-field.nl-field-open ul {
+		position: fixed;
+		left: 0;
+		top: 60%;
+	}	
+	.microposts li {
+    	-webkit-transform: translateZ(0);
+    	-moz-transform: translateZ(0);
+    	transform: translateZ(0);
+	}
+	.nl-field ul {
+		position: absolute;
+		visibility: hidden;
+		background: #76C3BD;
+		top: 50%;
+		font-size: 80%;
+		opacity: 0;
+		-webkit-transform: none;
+		-moz-transform: none;
+		transform: none;
+		-webkit-transition: none;
+		-moz-transition: none;
+		-o-transition: color 0 ease-in;
+		transition: none;
+	}
+	.formtags {
+  		font-size: .5em;
+	}
+	.span4 section img {
+		margin: 0 auto -10px auto;
+		display: block;
+	}
+	.span4 section h1, .span4 section span {
+		text-align: center;
+	}
+	.field textarea {
+		height: 2.5em;
+	}
+	.postbutton input.btn-primary{
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	.picks {
+		text-align: center;
+		border-left: none;
+		border-right: none;
+		margin-bottom: 25px;
+		margin-top: 7px;
+		padding-top: 0;
+	}
+	.followbtn {
+		position: absolute;
+		right: 20px;
+	}
+	.stats {
+		float: left;
+	}
 }
 
 @media screen and (max-width: 25em) {
 	.nl-form {
 		font-size: 2em;
+	}
+	h1.welcome {
+		font-size: 2.5em;
+	}
+	h2.example {
+		font-size: 1.5em;
+	}
+	.hero-unit {
+		padding: 0.5em;
+		margin-bottom: 15px;
+	}
+	span#typer {
+		display: block;
+		padding-top: 5px;
+		border: none;
+	}
+	div.welcomeface img {
+  		padding-top: 35px;
+	}
+	.nl-ti-text ul li.nl-ti-example {
+		padding: 0 1em;
+		font-size: 50%;
+	}
+	.nl-ti-text ul li.nl-ti-input input {
+		&::-webkit-input-placeholder {
+			padding-top: .1em;
+		}
+		&::-moz-placeholder {
+			padding-top: .1em;
+		}
+		&:-ms-input-placeholder {
+			padding-top: .1em;
+		}
+	}
+	.followbtn {
+		left: 60%;
+	}
+	.trendoptions {
+ 		width: 100%;
+ 		button {
+ 			display: block;
+ 			margin: 5px auto;
+ 		}
+ 		i {
+ 			display: none;
+ 		}
+ 		form {
+ 			margin-bottom: 10px;
+ 		}
+	}
+	.nl-field.nl-field-open ul {
+		left: -25px;
+	}
+	h1.trending {
+		margin-bottom: 5px;
 	}
 }

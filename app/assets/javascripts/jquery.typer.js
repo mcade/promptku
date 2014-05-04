@@ -1,7 +1,7 @@
 String.prototype.rightChars=function(n){if(n<=0){return"";}
 else if(n>this.length){return this;}
 else{return this.substring(this.length,this.length- n);}};(function($){var
-options={highlightSpeed:30,typeSpeed:100,clearDelay:300,typeDelay:300,clearOnHighlight:true,typerDataAttr:'data-typer-targets',typerInterval:4000},highlight,clearText,backspace,type,spanWithColor,clearDelay,typeDelay,clearData,isNumber,typeWithAttribute,getHighlightInterval,getTypeInterval,typerInterval;spanWithColor=function(color,backgroundColor){if(color==='rgba(0, 0, 0, 0)'){color='rgb(255, 255, 255)';}
+options={highlightSpeed:30,typeSpeed:100,clearDelay:300,typeDelay:300,clearOnHighlight:true,typerDataAttr:'data-typer-targets',typerInterval:3100},highlight,clearText,backspace,type,spanWithColor,clearDelay,typeDelay,clearData,isNumber,typeWithAttribute,getHighlightInterval,getTypeInterval,typerInterval;spanWithColor=function(color,backgroundColor){if(color==='rgba(0, 0, 0, 0)'){color='rgb(255, 255, 255)';}
 return $('<span></span>').css('color',color).css('background-color','rgba(57, 126, 195, 0.65)');};isNumber=function(n){return!isNaN(parseFloat(n))&&isFinite(n);};clearData=function($e){$e.removeData(['typePosition','highlightPosition','leftStop','rightStop','primaryColor','backgroundColor','text','typing']);};type=function($e){var
 text=$e.data('text'),oldLeft=$e.data('oldLeft'),oldRight=$e.data('oldRight');if(!text||text.length===0){clearData($e);return;}
 $e.text(oldLeft+

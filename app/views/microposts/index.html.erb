@@ -4,7 +4,7 @@
 <% else %>
 	<h1 class="trending">Search Results</h1>
 <% end %>
-<div class="trendoptions span5 offset4">
+<div class="trendoptions">
 	<% unless params[:tag].present? %>
 		<form action="" method="get">
 		  <fieldset>
@@ -30,7 +30,7 @@
 </div>
 <div class="search">
 	<%= form_tag microposts_path, method: :get do %>
-		<%= text_field_tag :query, params[:query], placeholder: 'Search for a promptku' %>
+		<%= text_field_tag :query, params[:query], placeholder: 'Search' %>
 		<%= submit_tag "Search", name: nil, class: "btn btn-lrg btn-primary" %>
 		<% if params[:query].present? %>
 			<% @microposts = Micropost.search(params[:query]).page params[:page] %>
