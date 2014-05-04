@@ -316,9 +316,7 @@ li #micropost_tag_list:-ms-input-placeholder {
   		width: 100%;
   	}
   	.nl-field.nl-field-open ul {
-		position: fixed;
-		left: 0;
-		top: 30%;
+
 	}	
 	.microposts li {
     	-webkit-transform: translateZ(0);
@@ -326,12 +324,6 @@ li #micropost_tag_list:-ms-input-placeholder {
     	transform: translateZ(0);
 	}
 	.nl-field ul {
-		position: absolute;
-		visibility: hidden;
-		background: #76C3BD;
-		top: 50%;
-		font-size: 80%;
-		opacity: 0;
 		-webkit-transform: none;
 		-moz-transform: none;
 		transform: none;
@@ -339,6 +331,9 @@ li #micropost_tag_list:-ms-input-placeholder {
 		-moz-transition: none;
 		-o-transition: color 0 ease-in;
 		transition: none;
+		li {
+			position: static;
+		}
 	}
 	.formtags {
   		font-size: .5em;
@@ -371,6 +366,14 @@ li #micropost_tag_list:-ms-input-placeholder {
 	}
 	.stats {
 		float: left;
+	}
+	i.fa-picture-o {
+		display: none;
+	}
+	.nl-overlay {
+		-webkit-transition: visibility 0s 0s, opacity 0s;
+		-moz-transition: visibility 0s 0s, opacity 0s;
+		transition: visibility 0s 0s, opacity 0s;
 	}
 }
 
