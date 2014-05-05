@@ -315,7 +315,7 @@ li #micropost_tag_list:-ms-input-placeholder {
 	#tag_cloud {
   		width: 100%;
   	}	
-	.microposts li {
+	/* .microposts li {
     	-webkit-transform: translateZ(0);
     	-moz-transform: translateZ(0);
     	transform: translateZ(0);
@@ -324,7 +324,7 @@ li #micropost_tag_list:-ms-input-placeholder {
 		-webkit-transform: translateZ(0);
     	-moz-transform: translateZ(0);
     	transform: translateZ(0);
-	}
+	} */
 	.nl-field ul {
 		-webkit-transform: none;
 		-moz-transform: none;
@@ -334,7 +334,7 @@ li #micropost_tag_list:-ms-input-placeholder {
 		-o-transition: color 0 ease-in;
 		transition: none;
 		position: fixed;
-		top: 120px;
+		top: 50%;
 		width: 100%;
 		margin-left: 0;
 		left: 0;
@@ -426,7 +426,7 @@ li #micropost_tag_list:-ms-input-placeholder {
 		}
 	}
 	.nl-field ul {
-		top: 85px;
+		top: 50%;
 	}
 	.followbtn {
 		left: 60%;
