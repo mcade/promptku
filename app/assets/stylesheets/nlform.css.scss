@@ -315,11 +315,16 @@ li #micropost_tag_list:-ms-input-placeholder {
 	#tag_cloud {
   		width: 100%;
   	}	
-	.microposts li {
+	/* .microposts li {
     	-webkit-transform: translateZ(0);
     	-moz-transform: translateZ(0);
     	transform: translateZ(0);
-	}
+	} */
+	/* .showku {
+		-webkit-transform: translateZ(0);
+    	-moz-transform: translateZ(0);
+    	transform: translateZ(0);
+	} */
 	.nl-field ul {
 		-webkit-transform: none;
 		-moz-transform: none;
@@ -328,9 +333,19 @@ li #micropost_tag_list:-ms-input-placeholder {
 		-moz-transition: none;
 		-o-transition: color 0 ease-in;
 		transition: none;
+		position: fixed;
+		top: -21px;
+		width: 100%;
+		margin-left: 0;
+		left: 0;
 		li {
-			position: static;
+			/* position: static; */
 		}
+	}
+	.nl-field.nl-field-open ul {
+		-webkit-transform: translateY(20px) scale(1);
+		-moz-transform: translateY(20px) scale(1);
+		transform: translateY(20px) scale(1);
 	}
 	.formtags {
   		font-size: .5em;
@@ -364,9 +379,6 @@ li #micropost_tag_list:-ms-input-placeholder {
 	.stats {
 		float: left;
 	}
-	i.fa-picture-o {
-		display: none;
-	}
 	.nl-overlay {
 		-webkit-transition: visibility 0s 0s, opacity 0s;
 		-moz-transition: visibility 0s 0s, opacity 0s;
@@ -376,13 +388,16 @@ li #micropost_tag_list:-ms-input-placeholder {
 
 @media screen and (max-width: 25em) {
 	.nl-form {
-		font-size: 2em;
+		font-size: 1.7em;
 	}
 	h1.welcome {
 		font-size: 2.5em;
 	}
 	h2.example {
 		font-size: 1.5em;
+		padding-top: 10px;
+		margin-bottom: 0;
+		height: 100px;
 	}
 	.hero-unit {
 		padding: 0.5em;
@@ -397,7 +412,6 @@ li #micropost_tag_list:-ms-input-placeholder {
   		padding-top: 35px;
 	}
 	.nl-ti-text ul li.nl-ti-example {
-		padding: 0 1em;
 		font-size: 50%;
 	}
 	.nl-ti-text ul li.nl-ti-input input {
@@ -427,11 +441,13 @@ li #micropost_tag_list:-ms-input-placeholder {
  			margin-bottom: 10px;
  		}
 	}
-	.nl-field.nl-field-open ul {
-		width: 30%;
-		left: 0;
-	}
 	h1.trending {
 		margin-bottom: 5px;
 	}
+	li i.fa-heart, li i.fa-heart-o, li i.fa-picture, li i.fa-comment {
+	font-size: 2.3em;
+  	}
+  	li .tags {
+  		padding-top: 1em;
+  	}
 }

@@ -1,10 +1,10 @@
-<div id="<%= @micropost.id %>">
+<div class="showku" id="show<%= @micropost.id %>">
   <span class="content">
     <%= form_for((@micropost), url: {action: "create"}, :html => { :id => "nl-form", :class => "nl-form" }, method: :post, :authenticity_token => true) do |f| %>       
       <%= f.hidden_field :content, :value => @micropost.content %>
       <span id="selectme<%= @micropost.id %>">
         <%= link_to "#{wrap(@micropost.content)}", microposts_path(show: "matching_prompts", content: @micropost.content), {:class => 'prompt'} %>
-        <input type="text" value="" placeholder="<%= wrap(@micropost.content1) %>" class="micropost_content1" id="micropost_content1" name="micropost[content1]" data-subline="Finish the sentence <em>in your own words.</em>"/>
+        <input type="text" value="" placeholder="<%= wrap(@micropost.content1) %>" class="micropost_content1" id="micropost_content1" name="micropost[content1]" data-subline="Finish the thought <em>in your own words.</em>"/>
         <div class="nl-overlay"></div>
       </span><br>
       <span class="user" id="author<%= @micropost.id %>">-<%= link_to @micropost.user.name, @micropost.user %></span>
@@ -52,7 +52,7 @@
   </span>
 
   <%= javascript_tag do %>
-    window.nlform = new NLForm( document.getElementById( '<%= @micropost.id %>' ) )
+    window.nlform = new NLForm( document.getElementById( 'show<%= @micropost.id %>' ) )
 
   $(function() {
     $("i#clicker<%= @micropost.id %>").click(function() {
@@ -75,20 +75,24 @@
   <% end %>
 </div>
 
-<!-- Share As Image BEGIN -->      
-<link href="http://cf.shareasimage.com/static/app/css/publisher.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript">
-    window.Sai = window.Sai || {};
-    Sai.publisher = {
-        publicKey: '4f592e01'
-    };
-    (function() {
-        var se = document.createElement('script');
-        se.type = 'text/javascript';
-        se.async = true;
-        se.src = 'http://cf.shareasimage.com/static/app/js/compiled/publisher.min.js';
-        var lse = document.getElementsByTagName('script')[0];
-        lse.parentNode.insertBefore(se, lse);
-    })();
+<script type="text/javascript"> 
+    if ($( window ).width() > 855) {
+        $('<link rel="stylesheet" type="text/css" href="http://cf.shareasimage.com/static/app/css/publisher.css" >')
+       .appendTo("head");
+        $('i.fa-picture-o').css( "display", "inline" );
+        $('span#picmobile').css( "display", "inline" );
+
+        window.Sai = window.Sai || {};
+        Sai.publisher = {
+            publicKey: '4f592e01'
+        };
+        (function() {
+            var se = document.createElement('script');
+            se.type = 'text/javascript';
+            se.async = true;
+            se.src = 'http://cf.shareasimage.com/static/app/js/compiled/publisher.min.js';
+            var lse = document.getElementsByTagName('script')[0];
+            lse.parentNode.insertBefore(se, lse);
+        })();
+    }
 </script>
-<!-- Share As Image END -->
