@@ -315,16 +315,12 @@ li #micropost_tag_list:-ms-input-placeholder {
 	#tag_cloud {
   		width: 100%;
   	}	
-	/* .microposts li {
-    	-webkit-transform: translateZ(0);
-    	-moz-transform: translateZ(0);
-    	transform: translateZ(0);
+	.microposts li {
+    	-webkit-font-smoothing: antialiased;
 	}
 	.showku {
-		-webkit-transform: translateZ(0);
-    	-moz-transform: translateZ(0);
-    	transform: translateZ(0);
-	} */
+		-webkit-font-smoothing: antialiased;
+	}
 	.nl-field ul {
 		-webkit-transform: none;
 		-moz-transform: none;
