@@ -31,11 +31,11 @@
     </div>
   </div>
   <script>
-    input.on('focus', function(){
-      $('.nl-field ul').css({position:'absolute'})   
+    $('.nl-field ul input').on('focus', function(){
+      $('.nl-field ul').css( 'position' , 'absolute' )   
     })
-    input.on('blur', function(){
-      $('.nl-field ul').css({position:'fixed'})
+    $('.nl-field ul input').on('blur', function(){
+      $('.nl-field ul').css( 'position' , 'fixed' )
     })
   </script>
 <% else %>
