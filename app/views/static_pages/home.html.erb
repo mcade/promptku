@@ -30,6 +30,14 @@
       <%= paginate @feed_items %>
     </div>
   </div>
+  <script>
+    input.on('focus', function(){
+      $('.nl-field ul').css({position:'absolute'})   
+    })
+    input.on('blur', function(){
+      $('.nl-field ul').css({position:'fixed'})
+    })
+  </script>
 <% else %>
   <div class="center hero-unit">
     <h1 class="welcome">Welcome to <span class="prompt">prompt<span class="kulogo">ku</span></span></h1>
@@ -48,7 +56,7 @@
   </div>
   <div id="promptsample"></div>
   <script>
-        setTimeout(function (){
+    setTimeout(function (){
         $('#promptsample').hide(function(){
           $('#promptsample').fadeIn(500).text("If money wasn't necessary for survival...");
         });
