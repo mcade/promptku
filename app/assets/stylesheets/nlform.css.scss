@@ -314,35 +314,29 @@ li #micropost_tag_list:-ms-input-placeholder {
 	}
 	#tag_cloud {
   		width: 100%;
-  	}	
-	.microposts li {
-    	-webkit-font-smoothing: antialiased;
-	}
-	.showku {
-		-webkit-font-smoothing: antialiased;
-	}
+  	}
+  	.nl-field {
+		display: block;
+		margin-bottom: -60px;
+	}	
 	.nl-field ul {
-		-webkit-transform: none;
+		top: 70%;
+		/* -webkit-transform: none;
 		-moz-transform: none;
 		transform: none;
 		-webkit-transition: none;
 		-moz-transition: none;
 		-o-transition: color 0 ease-in;
 		transition: none;
-		position: fixed;
-		top: 50%;
 		width: 100%;
 		margin-left: 0;
-		left: 0;
-		li {
-			/* position: static; */
-		}
+		left: 0; */
 	}
-	.nl-field.nl-field-open ul {
+	/* .nl-field.nl-field-open ul {
 		-webkit-transform: translateY(-20px) scale(1);
 		-moz-transform: translateY(-20px) scale(1);
 		transform: translateY(-20px) scale(1);
-	}
+	} */
 	.formtags {
   		font-size: .5em;
 	}
@@ -421,8 +415,8 @@ li #micropost_tag_list:-ms-input-placeholder {
 			padding-top: .1em;
 		}
 	}
-	.nl-field ul {
-		top: 50%;
+	.nl-field {
+		margin-bottom: -30px;
 	}
 	.followbtn {
 		left: 60%;
