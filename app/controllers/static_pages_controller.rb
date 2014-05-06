@@ -14,4 +14,10 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def tos
+  end
+
+  def privacy
+  end
 end

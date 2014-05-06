@@ -23,8 +23,8 @@
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
 			} );
-			this.overlay.addEventListener( 'touchstart', function(ev) { ev.stopImmediatePropagation(); self._closeFlds(); } );
-			this.overlay.addEventListener( 'click', function(ev) { ev.stopImmediatePropagation(); self._closeFlds(); } );
+			this.overlay.addEventListener( 'touchstart', function(ev) { self._closeFlds(); } );
+			this.overlay.addEventListener( 'click', function(ev) { self._closeFlds(); } );
 		},
 		_closeFlds : function() {
 			if( this.fldOpen !== -1 ) {
@@ -78,7 +78,7 @@
 		},
 		_initEvents : function() {
 			var self = this;
-			this.toggle.addEventListener( 'click', function( ev ) { ev.preventDefault(); ev.stopImmediatePropagation(); self._open(); } );
+			this.toggle.addEventListener( 'click', function( ev ) { ev.preventDefault(); ev.stopPropagation(); self._open(); } );
 
 			if( this.type === 'input' ) {
 				this.getinput.addEventListener( 'keydown', function( ev ) {
