@@ -1,9 +1,13 @@
 <%= form_for([@micropost, @comment], :remote => true, :authenticity_token => true) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :comment_content, :placeholder => "Write a Comment..." %>
-  </div>
-  <button class="btn" type="submit">
-    Create
-  </button>
+	<% if signed_in? %>
+	  <div class="field">
+	    <%= f.text_area :comment_content, :placeholder => "Write a comment..." %>
+	  </div>
+	  <button class="btn" type="submit">
+	    Create
+	  </button>
+	<% else %>
+	 	<%= f.text_area :comment_content, :placeholder => "Signin to leave a comment..." %>
+	<% end %>
 <% end %>

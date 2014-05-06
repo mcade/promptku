@@ -13,13 +13,14 @@
 <button type="button" class="btn btn-large btn-info newpromptbtn"><i class="fa fa-plus"></i> new promptku</button>
 <script>
 	$(function() {
-    	$(".newpromptbtn").click(function() {
-      		$(".new_micropost").slideDown();
-      		$(".newpromptbtn").hide();
-    	});
-    	$(".postbutton input").click(function() {
-      		$(".new_micropost").slideUp();
-      		$(".newpromptbtn").fadeIn();
-    	});
-  	});
+    $(".newpromptbtn").click(function() {
+      	$(".new_micropost").slideDown();
+      	$(".newpromptbtn").hide();
+    });
+    $(".postbutton input").click(function() {
+      	$(".new_micropost").slideUp();
+      	$(".newpromptbtn").fadeIn();
+        $("li.micropost").last().remove();
+    });
+  });
 </script>

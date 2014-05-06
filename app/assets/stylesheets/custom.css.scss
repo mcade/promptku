@@ -626,3 +626,14 @@ span#picmobile {
     font-size: 12pt;
   }
 }
+
+.tags a:first-child:before {
+  font-family: FontAwesome;
+  content: "\f02c";
+  color: rgba(53, 102, 53, 0.9);
+  padding-right: 5px;
+  cursor: default;
+  :hover {
+    color: rgba(53, 102, 53, 0.9)
+  }
+}

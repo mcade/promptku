@@ -14,21 +14,21 @@ $(document).ready ->
         nlid = $(this).data('url')
         nlform = new NLForm(document.getElementById "post" + nlid )
         $ ->
-          $("li#post" + nlid + " form input").keyup ->
-            $("span#author" + nlid).hide()
-            $("span#tags" + nlid).fadeIn()
-            $("div.nl-submit-wrap#submit" + nlid).fadeIn()
+          $("#post" + nlid + " form input").keyup ->
+            $("#author" + nlid).hide()
+            $("#tags" + nlid).fadeIn()
+            $("#submit" + nlid).fadeIn()
         $("#btn" + nlid).click (event) ->
-          kutext = $("li#post" + nlid + " span.content").data('url')
-          $("span#author" + nlid).slideDown()
-          $("span#tags" + nlid).slideUp()
-          $("div.nl-submit-wrap#submit" + nlid).fadeOut 1300, ->
+          kutext = $("#post" + nlid + " span.content").data('url')
+          $("#author" + nlid).slideDown()
+          $("#tags" + nlid).slideUp()
+          $("#submit" + nlid).fadeOut 1300, ->
             $("#post" + nlid + " a.nl-field-toggle").text kutext
             if $("button.more").length isnt 0
               $("li.micropost").last().slideUp "slow", ->
                 $("li.micropost").last().remove()
         $ ->
-          $("i#clicker" + nlid).click ->
+          $("#clicker" + nlid).click ->
             SelectText "selectme" + nlid
         return
 
@@ -41,22 +41,22 @@ $(document).ready ->
 $(document).ready ->
   $('li.micropost').each ->
           nlid = $(this).data('url')
-          nlform = new NLForm(document.getElementById("post" + nlid))  if $("li#post" + nlid + " .nl-field-toggle").length is 0
+          nlform = new NLForm(document.getElementById("post" + nlid))  if $("#post" + nlid + " .nl-field-toggle").length is 0
           $ ->
-            $("li#post" + nlid + " form input").keyup ->
-              $("span#author" + nlid).hide()
-              $("span#tags" + nlid).fadeIn()
-              $("div.nl-submit-wrap#submit" + nlid).fadeIn()
+            $("#post" + nlid + " form input").keyup ->
+              $("#author" + nlid).hide()
+              $("#tags" + nlid).fadeIn()
+              $("#submit" + nlid).fadeIn()
           $("#btn" + nlid).click (event) ->
-            kutext = $("li#post" + nlid + " span.content").data('url')
-            $("span#author" + nlid).slideDown()
-            $("span#tags" + nlid).slideUp()
-            $("div.nl-submit-wrap#submit" + nlid).fadeOut 1300, ->
+            kutext = $("#post" + nlid + " span.content").data('url')
+            $("#author" + nlid).slideDown()
+            $("#tags" + nlid).slideUp()
+            $("#submit" + nlid).fadeOut 1300, ->
               $("#post" + nlid + " a.nl-field-toggle").text kutext
               if $("button.more").length isnt 0
                 $("li.micropost").last().slideUp "slow", ->
                   $("li.micropost").last().remove()
           $ ->
-            $("i#clicker" + nlid).click ->
+            $("#clicker" + nlid).click ->
               SelectText "selectme" + nlid
           return
