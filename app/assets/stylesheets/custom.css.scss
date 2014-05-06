@@ -547,6 +547,24 @@ div#promptsample {
     color: blue;
   }
 }
+.trendingprompts {
+  width: 100%;
+  margin: 10px auto 5px auto;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 1.5em;
+  a, i {
+    color: lightblue;
+    text-decoration: none;
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+.nav i {
+  color: lightblue;
+}
 
 p.iconhelp {
   border-top: dashed 1px #b94a48;

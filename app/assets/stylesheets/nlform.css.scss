@@ -289,6 +289,12 @@ li #micropost_tag_list:-ms-input-placeholder {
 	transition-delay: 0s;
 }
 
+@media screen and (max-width: 979px) {
+	#logo {
+		padding-top: 0;
+	}
+}
+
 @media screen and (max-width: 45em) {
 	.nl-form {
 		font-size: 3em;
@@ -304,9 +310,6 @@ li #micropost_tag_list:-ms-input-placeholder {
 	}
 	div.welcomeface img {
   		padding-top: 10px;
-	}
-	#logo {
-		padding-top: 0;
 	}
 	div.help {
   		width: 100%;
@@ -369,10 +372,12 @@ li #micropost_tag_list:-ms-input-placeholder {
 	.stats {
 		float: left;
 	}
-	.nl-overlay {
-		-webkit-transition: visibility 0s 0s, opacity 0s;
-		-moz-transition: visibility 0s 0s, opacity 0s;
-		transition: visibility 0s 0s, opacity 0s;
+	.nl-field.nl-field-open ~ .nl-overlay {
+		opacity: 0;
+	}
+	li.micropost, .showku {
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+		-webkit-tap-highlight-color: transparent;
 	}
 }
 
@@ -442,5 +447,12 @@ li #micropost_tag_list:-ms-input-placeholder {
   	}
   	li .tags {
   		padding-top: 1em;
+  	}
+  	.picks {
+  		font-size: 1.3em;
+  		h3 {
+  			font-size: 1.3em;
+  			margin-bottom: 5px;
+  		}
   	}
 }
