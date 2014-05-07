@@ -13,9 +13,9 @@
       </div>
     <% end %>
   </span>
-  <p class="tags"><%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
+  <p class="tags" style="margin-top: 30px;"><%= raw micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
 
-  <div class="functions">
+  <div class="functions" style="margin-top: 20px;">
     <!-- voting -->
     <span id="vote<%= micropost.id %>">
       <% unless micropost.user.id == current_user.id %>
