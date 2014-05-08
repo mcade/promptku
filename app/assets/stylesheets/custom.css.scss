@@ -637,3 +637,8 @@ span#picmobile {
     color: rgba(53, 102, 53, 0.9)
   }
 }
+
+/* fix bootstrap collapse menu not working on ipad */
+.navbar ul.nav li ul li a {
+    z-index: 1000;
+}
