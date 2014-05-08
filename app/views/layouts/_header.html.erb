@@ -36,4 +36,16 @@
       </div>
     </div>
   </div>
+  <script>
+  $(window).on('resize', function(){
+    if ($( window ).width() < 980) {
+      jQuery(document).ready(function($) {
+      $("li.dropdown a").click(function(e){
+          $(this).next('ul.dropdown-menu').css("display", "block");
+          e.stopPropagation();
+          });
+      });
+    }
+  });
+  </script>
 </header>
