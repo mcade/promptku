@@ -294,6 +294,12 @@ li #micropost_tag_list:-ms-input-placeholder {
 		padding-top: 0;
 	}
 }
+@media screen and (max-width: 65em) {
+	.nl-field {
+		display: block;
+		margin-bottom: -60px;
+	}	
+}
 
 @media screen and (max-width: 45em) {
 	.nl-form {
@@ -318,10 +324,6 @@ li #micropost_tag_list:-ms-input-placeholder {
 	#tag_cloud {
   		width: 100%;
   	}
-  	.nl-field {
-		display: block;
-		margin-bottom: -60px;
-	}	
 	.nl-field ul {
 		top: 70%;
 		/* -webkit-transform: none;
