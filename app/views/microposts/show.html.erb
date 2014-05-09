@@ -21,6 +21,9 @@
   <p class="tags"><%= raw @micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
 
   <div class="functions">
+    <% tw_text = "#{@micropost.content} #{@micropost.content1} #promptku " %>
+    <% tw_text = URI.escape(tw_text, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) %>
+    <a href="https://twitter.com/share?url=<%= micropost_url(@micropost) %>&text=<%= tw_text %>" target="_blank"><i class="fa fa-twitter fa-3x"></i></a>
     <!-- voting -->
     <span id="vote<%= @micropost.id %>">
       <span><%= pluralize @micropost.reputation_for(:votes).to_i, "heart" %></span>
