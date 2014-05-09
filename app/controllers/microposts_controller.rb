@@ -1,11 +1,13 @@
 class MicropostsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy, :index, :likes, :votes]
+  before_action :signed_in_user, only: [:create, :destroy, :likes, :votes]
   before_action :correct_user,   only: :destroy
 
 
 
   def index
-    @micropost  = current_user.microposts.build
+    if signed_in?
+      @micropost  = current_user.microposts.build
+    end
     #@microposts = Micropost.search(params[:query]).page params[:page]
     @microposts = case params["show"]
       when "daily"

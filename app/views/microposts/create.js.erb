@@ -27,16 +27,11 @@
 		      }
 		    });
 		  });
-		  $(function() {
-		    return $("#clicker" + nlid).click(function() {
-		      return SelectText("selectme" + nlid);
-		    });
-		  });
 		});
 	    $("#postcount").text("You've made <%= pluralize(current_user.microposts.count, "promptku") %>!");
 	    $('.microposts').children(':first').hide().slideDown();
-	    $('#micropost_content').val("");
-	    $('#micropost_content1').val("");
+	    $('textarea#micropost_content').val("");
+	    $('textarea#micropost_content1').val("");
 	    $('#micropost_tag_list').val("");
 	    $('.nl-ti-text ul li.nl-ti-input input').val("");
 	    $('.noposts').fadeOut("slow");

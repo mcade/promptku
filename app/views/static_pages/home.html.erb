@@ -23,7 +23,7 @@
       </section>
     </aside>
     <div class="span8">
-      <h3>My Feed</h3>
+      <h3>FEED</h3>
       <%= render 'shared/home_feed' %>
       <% unless (params[:page].present? || @feed_items.count <10) %>
         <button class = "more btn btn-large btn-info">Show More</button>
@@ -56,8 +56,8 @@
     }, 8500); 
 
     setTimeout(function (){
-        $('#promptsample').fadeOut(200, function() {
-            $(this).text("I'll know I've made it when...").fadeIn(300);
+        $('#promptsample').fadeOut(400, function() {
+            $(this).text("That moment when...").fadeIn(300);
         });
     }, 12000);
 

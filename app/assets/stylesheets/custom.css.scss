@@ -449,6 +449,10 @@ div#infscr-loading {
 
 div.span8 h3 {
   text-align: center;
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 div.search {
@@ -569,8 +573,9 @@ div#promptsample {
   color: lightblue;
 }
 
-p.iconhelp {
+.iconhelp {
   border-top: dashed 1px #b94a48;
+  padding-top: 4px;
 }
 
 .picks {
@@ -610,12 +615,6 @@ p.iconhelp {
   border: none;
 }
 
-i.fa-picture-o {
-  display: none;
-}
-span#picmobile {
-  display: none;
-}
 
 .legal {
   font-family: Arial, Helvetica, sans-serif;
@@ -636,4 +635,49 @@ span#picmobile {
   :hover {
     color: rgba(53, 102, 53, 0.9)
   }
+}
+
+h3.trending span {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+}
+.trending {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  a {
+    text-decoration: none;
+  }
+}
+h1.likes {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.userinfoname {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: #f8fdff;
+  text-decoration: none;
+  &:hover {
+    color: lightblue;
+  }
+}
+
+.userinfonameshow {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+#howto, #aboutus, #contactus, #signupnew, #signinsession, #allusers, .passreset, #updateheading {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }

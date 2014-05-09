@@ -28,8 +28,6 @@ $(document).ready ->
               $("li.micropost").last().slideUp "slow", ->
                 $("li.micropost").last().remove()
         $ ->
-          $("#clicker" + nlid).click ->
-            SelectText "selectme" + nlid
         return
 
 
@@ -57,6 +55,4 @@ $(document).ready ->
                 $("li.micropost").last().slideUp "slow", ->
                   $("li.micropost").last().remove()
           $ ->
-            $("#clicker" + nlid).click ->
-              SelectText "selectme" + nlid
           return

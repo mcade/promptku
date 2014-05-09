@@ -435,9 +435,9 @@ li #micropost_tag_list:-ms-input-placeholder {
 	}
 	.trendoptions {
  		width: 100%;
+ 		text-align: center;
  		button {
- 			display: block;
- 			margin: 5px auto;
+ 			margin-top: 2px;
  		}
  		i {
  			display: none;
@@ -447,9 +447,9 @@ li #micropost_tag_list:-ms-input-placeholder {
  		}
 	}
 	h1.trending {
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 	}
-	li i.fa-heart, li i.fa-heart-o, li i.fa-picture, li i.fa-comment {
+	li i.fa-heart, li i.fa-heart-o, li i.fa-twitter, li i.fa-comment {
 	font-size: 2.3em;
   	}
   	li .tags {

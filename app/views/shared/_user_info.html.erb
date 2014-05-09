@@ -7,7 +7,7 @@
 <h1>
   <span class="userinfo">
     <%= link_to '<i class="fa fa-heart"></i>'.html_safe, likes_micropost_path(current_user) %>
-    <%= current_user.name %>
+    &nbsp;<%= link_to current_user.name, current_user, class: "userinfoname" %>
   </span>
 </h1>
 <span id="postcount">

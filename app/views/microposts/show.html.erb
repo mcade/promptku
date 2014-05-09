@@ -21,9 +21,6 @@
   <p class="tags"><%= raw @micropost.tag_list.map { |t| link_to t, tag_path(t) }.join(' ') %></p>
 
   <div class="functions">
-    <% tw_text = "#{@micropost.content} #{@micropost.content1} #promptku " %>
-    <% tw_text = URI.escape(tw_text, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) %>
-    <a href="https://twitter.com/share?url=<%= micropost_url(@micropost) %>&text=<%= tw_text %>" target="_blank"><i class="fa fa-twitter fa-3x"></i></a>
     <!-- voting -->
     <span id="vote<%= @micropost.id %>">
       <span><%= pluralize @micropost.reputation_for(:votes).to_i, "heart" %></span>
@@ -39,8 +36,12 @@
         <%= link_to '<i class="fa fa-heart fa-3x"></i>'.html_safe, root_path %>
       <% end %>
     </span>
-    <!-- share as image -->
-    <i class="fa fa-picture-o fa-3x" id="clicker<%= @micropost.id %>"></i>
+    <!-- tweet -->
+    <% client = Bitly.client %>
+    <% url = client.shorten("https://www.promptku.com/#{micropost_path(@micropost)}") %>
+    <% tw_text = "#{@micropost.content} #{@micropost.content1} #promptku " %>
+    <% tw_text = URI.escape(tw_text, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) %>
+    <a href="https://twitter.com/share?url=&text=<%= tw_text %> <%= (url.short_url).gsub!("http://", "") %>" target="_blank"><i class="fa fa-twitter fa-3x"></i></a>
   </div>
   <div class="timeago">
     <span class="timestamp">
@@ -85,25 +86,3 @@
   });
   <% end %>
 </div>
-
-<script type="text/javascript"> 
-  if ($( window ).width() > 855) {
-      $('<link rel="stylesheet" type="text/css" href="http://cf.shareasimage.com/static/app/css/publisher.css" >')
-     .appendTo("head");
-      $('i.fa-picture-o').css( "display", "inline" );
-      $('span#picmobile').css( "display", "inline" );
-
-      window.Sai = window.Sai || {};
-      Sai.publisher = {
-          publicKey: '4f592e01'
-      };
-      (function() {
-          var se = document.createElement('script');
-          se.type = 'text/javascript';
-          se.async = true;
-          se.src = 'http://cf.shareasimage.com/static/app/js/compiled/publisher.min.js';
-          var lse = document.getElementsByTagName('script')[0];
-          lse.parentNode.insertBefore(se, lse);
-      })();
-  }
-</script>

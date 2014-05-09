@@ -1,33 +1,39 @@
 <% provide(:title, 'Trending Microposts') %>
-<% unless params["query"].present? %>
+<% if !params["query"].present? && params["show"] != "matching_prompts" %>
 	<h1 class="trending">Trending</h1>
+<% elsif params["show"] == "matching_prompts" %>
+	<% client = Bitly.client %>
+    <% url = client.shorten(request.original_url) %>
+	<h3 class="trending"><a href="<%= url.short_url %>"><i class="fa fa-link fa-lg"><span>&nbsp;link to this prompt</span></i></a></h3>
 <% else %>
 	<h1 class="trending">Search Results</h1>
 <% end %>
-<div class="trendoptions">
-	<% unless params[:tag].present? %>
-		<form action="" method="get">
-		  <fieldset>
-		  	<% if params["show"] == "daily" %>
-		    	<button class="btn btn-info selected" type="submit" name="show" value="daily">Today</button>
-		    <% else %>
-		    	<button class="btn btn-info" type="submit" name="show" value="daily">Today</button>
-		    <% end %>
-		    <% unless params["show"] == "daily" || params["show"] == "monthly" || params[:query].present? || params["show"] == "matching_prompts" %>
-		    	<button class="btn btn-info selected" type="submit" name="show" value="weekly">This week</button>
-		    <% else %>
-		    	<button class="btn btn-info" type="submit" name="show" value="weekly">This week</button>
-		    <% end %>
-		    <% if params["show"] == "monthly" %>
-		    	<button class="btn btn-info selected" type="submit" name="show" value="monthly">This month</button>
-		    <% else %>
-		    	<button class="btn btn-info" type="submit" name="show" value="monthly">This month</button>
-		    <% end %>
-		    <i class="fa fa-search fa-2x"></i>
-		  </fieldset>
-		</form>
-	<% end %>
-</div>
+<% unless params["show"] == "matching_prompts" %>
+	<div class="trendoptions">
+		<% unless params[:tag].present? %>
+			<form action="" method="get">
+			  <fieldset>
+			  	<% if params["show"] == "daily" %>
+			    	<button class="btn btn-info selected" type="submit" name="show" value="daily">Today</button>
+			    <% else %>
+			    	<button class="btn btn-info" type="submit" name="show" value="daily">Today</button>
+			    <% end %>
+			    <% unless params["show"] == "daily" || params["show"] == "monthly" || params[:query].present? || params["show"] == "matching_prompts" %>
+			    	<button class="btn btn-info selected" type="submit" name="show" value="weekly">This week</button>
+			    <% else %>
+			    	<button class="btn btn-info" type="submit" name="show" value="weekly">This week</button>
+			    <% end %>
+			    <% if params["show"] == "monthly" %>
+			    	<button class="btn btn-info selected" type="submit" name="show" value="monthly">This month</button>
+			    <% else %>
+			    	<button class="btn btn-info" type="submit" name="show" value="monthly">This month</button>
+			    <% end %>
+			    <i class="fa fa-search fa-2x"></i>
+			  </fieldset>
+			</form>
+		<% end %>
+	</div>
+<% end %>
 <div class="search">
 	<%= form_tag microposts_path, method: :get do %>
 		<%= text_field_tag :query, params[:query], placeholder: 'Search...' %>
@@ -37,18 +43,20 @@
 		<% end %>
 	<% end %>
 </div>
-<div id="tag_cloud">
-	<% if params["show"] == "daily" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 24.hours.ago ) %>
-	<% elsif params["show"] == "monthly" %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 672.hours.ago ) %>
-	<% else %>
-		<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 168.hours.ago ) %>
-	<% end %>
-	<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
-		<%= link_to tag.name, tag_path(tag.name), class: css_class%>
-	<% end %>
-</div>
+<% unless params["show"] == "matching_prompts" %>
+	<div id="tag_cloud">
+		<% if params["show"] == "daily" %>
+			<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 24.hours.ago ) %>
+		<% elsif params["show"] == "monthly" %>
+			<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 672.hours.ago ) %>
+		<% else %>
+			<% @tags = Micropost.tag_counts_on(:tags, :limit => 10, :start_at => 168.hours.ago ) %>
+		<% end %>
+		<% tag_cloud @tags, %w[s m l] do |tag, css_class| %>
+			<%= link_to tag.name, tag_path(tag.name), class: css_class%>
+		<% end %>
+	</div>
+<% end %>
 <div class="col-md-6 col-md-offset-3">
 	<%= render 'shared/public_feed' %>
 	<% unless (params[:page].present? || @microposts.count <10) %>
