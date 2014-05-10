@@ -650,6 +650,12 @@ h3.trending span {
     text-decoration: none;
   }
 }
+h3.trending a {
+  color: lightblue;
+}
+h3.trending a:hover {
+  color: blue;
+}
 h1.likes {
   font-family:'TeX Gyre Heros';
   font-style: normal;
