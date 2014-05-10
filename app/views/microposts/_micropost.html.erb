@@ -28,11 +28,9 @@
       <% end %>
     </span>
     <!-- tweet -->
-    <% client = Bitly.client %>
-    <% url = client.shorten("https://www.promptku.com/#{micropost_path(micropost)}") %>
     <% tw_text = "#{micropost.content} #{micropost.content1} #promptku " %>
     <% tw_text = URI.escape(tw_text, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) %>
-    <a href="https://twitter.com/share?url=&text=<%= tw_text %> <%= (url.short_url).gsub!("http://", "") %>" target="_blank"><i class="fa fa-twitter fa-3x"></i></a>
+    <a href="https://twitter.com/share?url=&text=<%= tw_text %><%= micropost.content2 %>" target="_blank"><i class="fa fa-twitter fa-3x"></i></a>
     <!-- comment -->
     <span>
       <%= link_to '<i class="fa fa-comment fa-3x"></i>'.html_safe, micropost %>

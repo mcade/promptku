@@ -681,3 +681,21 @@ h1.likes {
   font-weight: 400;
   letter-spacing: 0.5px;
 }
+
+.hometrending {
+  font-family:'TeX Gyre Heros';
+  font-style: normal;
+  font-weight: 400;
+  color: #999999;
+  margin-top: 20px;
+  margin-bottom: -20px;
+  a {
+    text-decoration: none;
+  }
+  a i {
+    color: lightblue;
+    :hover {
+      color: lightblue;
+    }
+  }
+}

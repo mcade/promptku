@@ -42,15 +42,17 @@ class MicropostsController < ApplicationController
     if @micropost.content1.blank?
       @micropost.content1 = "..."
     end
-    respond_to do |format|
-      if @micropost.save
+    if @micropost.save
+      url = Bitly.client.shorten("https://www.promptku.com/microposts/#{@micropost.id}")
+      @micropost.update_attributes :content2 => (url.short_url).gsub!("http://", "")
+      respond_to do |format|
         format.html {redirect_to root_url}
         format.js
-      else
-        @feed_items = []
-        @microposts = []
-        render 'static_pages/home'
       end
+    else
+      @feed_items = []
+      @microposts = []
+      render 'static_pages/home'
     end
   end
 

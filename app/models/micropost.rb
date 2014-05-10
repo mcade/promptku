@@ -17,7 +17,7 @@ class Micropost < ActiveRecord::Base
   before_save :extract_in_reply_to
   scope :from_users_followed_by_including_replies, lambda { |user| followed_by_including_replies(user) }
 
-	validates :content, presence: true, length: { maximum: 140 }
+	validates :content, presence: true, length: { maximum: 120 }
   validates :content1, presence: true, length: { maximum: 140 }
   validates :tag_list, length: { maximum: 140 }
 	validates :user_id, presence: true
