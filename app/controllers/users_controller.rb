@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
+  around_filter :catch_not_found
+  
     def index
       # @users = User.paginate(page: params[:page])
       # Using pg_search for full text search and kaminari gem to paginate
@@ -84,5 +86,11 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def catch_not_found
+      yield
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url, :flash => { :error => "Record not found." }
     end
 end

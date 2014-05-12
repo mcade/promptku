@@ -14,6 +14,9 @@
 </head>
 <body>
     <%= render 'layouts/header' %>
+    <noscript>
+      You don't have javascript enabled. You need to enable it in order to use promptku.
+    </noscript>
     <div class="container">
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "alert alert-#{key}") %>

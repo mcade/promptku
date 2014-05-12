@@ -2,6 +2,8 @@ class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy, :likes, :votes]
   before_action :correct_user,   only: :destroy
 
+  around_filter :catch_not_found
+
 
 
   def index
@@ -102,5 +104,11 @@ class MicropostsController < ApplicationController
     def correct_user
       @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
+    end
+
+    def catch_not_found
+      yield
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url, :flash => { :error => "Record not found." }
     end
 end

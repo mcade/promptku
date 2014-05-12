@@ -22,6 +22,8 @@ gem 'jquery-turbolinks'
 gem 'carrierwave'
 gem 'bitly'
 
+gem 'fog', '~> 1.22.0'
+
 
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
