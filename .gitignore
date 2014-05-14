@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+/config/initializers/carrierwave.rb
+/app/assets/javascripts/bitlyshorten.js
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -25,3 +27,8 @@ doc/
 .idea
 .secret
 setup_mail.rb
+promptku.csr
+promptkussl.csr
+promptkussl.key
+promptkussl.pass.key
+certificate-53590.crt
