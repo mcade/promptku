@@ -7,6 +7,7 @@
 # Ignore bundler config.
 /.bundle
 /config/initializers/carrierwave.rb
+/config/initializers/bitly.rb
 /app/assets/javascripts/bitlyshorten.js
 
 # Ignore the default SQLite database.
