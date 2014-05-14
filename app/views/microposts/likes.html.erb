@@ -4,7 +4,7 @@
 
 <%= render 'shared/public_feed' %>
 
-<% unless (params[:page].present? || @microposts.count <25) %>
+<% unless (params[:page].present? || @microposts.count <20) %>
 	<button class = "more btn btn-large btn-info">Show More</button>
 <% end %>
 	<%= paginate @microposts %>

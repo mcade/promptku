@@ -25,7 +25,7 @@
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
-      <% unless (params[:page].present? || @microposts.count <10) %>
+      <% unless (params[:page].present? || @microposts.count <20) %>
         <button class = "more btn btn-large btn-info">Show More</button>
       <% end %>
         <%= paginate @microposts %>

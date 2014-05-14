@@ -13,17 +13,17 @@ class MicropostsController < ApplicationController
     #@microposts = Micropost.search(params[:query]).page params[:page]
     @microposts = case params["show"]
       when "daily"
-          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(10)
+          Kaminari.paginate_array(Micropost.popularToday).page(params[:page]).per(20)
       when "monthly"
-          Kaminari.paginate_array(Micropost.popularMonthly).page(params[:page]).per(10)
+          Kaminari.paginate_array(Micropost.popularMonthly).page(params[:page]).per(20)
       when "matching_prompts"
         matching = Micropost.where(content: params[:content])
-        Kaminari.paginate_array(matching).page(params[:page]).per(10)
+        Kaminari.paginate_array(matching).page(params[:page]).per(20)
       else
         if params[:tag].present? && params["show"].nil?
-          Kaminari.paginate_array(Micropost.tagged_with(params[:tag])).page(params[:page]).per(10)
+          Kaminari.paginate_array(Micropost.tagged_with(params[:tag])).page(params[:page]).per(20)
         else
-          Kaminari.paginate_array(Micropost.popularWeekly).page(params[:page]).per(10)
+          Kaminari.paginate_array(Micropost.popularWeekly).page(params[:page]).per(20)
         end
     end
   end
