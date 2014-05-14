@@ -37,14 +37,9 @@
     </div>
   </div>
   <script>
-    $('#dropwdownitem1').on('click', function(event){
-      event.stopPropagation();
-    });
-    $('#dropdownitem2').on('click', function(event){
-      event.stopPropagation();
-    });
-    $('#dropwdownitem3').on('click', function(event){
-      event.stopPropagation();
+    $('.dropdown-submenu ul.dropdown-menu li a').on('touchstart', function(e) {
+      e.preventDefault();
+      window.location.href = $(this).attr('href');
     });
   </script>
 </header>
