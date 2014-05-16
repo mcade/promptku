@@ -5,7 +5,7 @@
 	<h3 class="trending"><i class="fa fa-link fa-lg"><span>&nbsp;link to this prompt</span></i></h3>
 	<Script>
 		$( "h3" ).click(function() {
-			var long_url = "http://www.google.com";
+			var long_url = "<%= request.original_url %>";
 			get_short_url(long_url, login, api_key, function(short_url) {
 			    $( "h3" ).html('<a href="' + short_url + '">' + short_url + '</a>');
 			});
