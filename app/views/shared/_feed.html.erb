@@ -2,7 +2,7 @@
   <ol class="microposts">
     <%= render partial: 'shared/feed_item', collection: @feed_items %>
   </ol>
-  <% unless (params[:page].present? || @feed_items.count <25) %>
+  <% unless (params[:page].present? || @feed_items.count <20) %>
 	<button class = "more">Show More</button>
   <% end %>
   	<%= paginate @feed_items %>

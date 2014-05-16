@@ -27,3 +27,13 @@ doc/
 .secret
 setup_mail.rb
 
+#need to ignore
+certificate-53590.crt
+myserver.key
+promptku.csr
+promptkussl.csr
+promptkussl.key
+promptkussl.pass.key
+carrierwave.rb
+bitly.rb
+bitlyshorten.js
